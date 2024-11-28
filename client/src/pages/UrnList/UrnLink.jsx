@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 
-export default function CatLink(props) {
+export default function UrnLink(props) {
    
     return (
         <>
-            <Link to={`/cat/${props._id}`}>
+            <Link to={`/urn/${props._id}`}>
                 <p>{props.name}</p>
             </Link>
         </>

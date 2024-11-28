@@ -6,12 +6,12 @@ var logger = require('morgan');
 const cors = require("cors");
 const mongoose = require('mongoose');
 mongoose
-.connect('')
+.connect('mongodb+srv://admin:adminadmin@cluster0.rrgae.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 .then(() => console.log("Database connected"))
 .catch((err) => console.log(err));
 
 var indexRouter = require('./routes/index');
-var catsRouter = require('./routes/cats');
+var urnsRouter = require('./routes/urns');
 
 var app = express();
 
@@ -27,7 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/cats', catsRouter);
+app.use('/urns', urnsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

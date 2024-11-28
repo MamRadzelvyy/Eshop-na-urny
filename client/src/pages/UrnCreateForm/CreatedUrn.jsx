@@ -1,12 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 
-export default function CreatedCat() {
+export default function CreatedUrn() {
   const { id } = useParams();  
 
   return (
     <>
       <p>Created cat: { id }</p>
-      <Link to={`/cat/${id}`}>
+      <Link to={`/urn/${id}`}>
         <p>View cat</p>
       </Link>
       <Link to={"/"}>

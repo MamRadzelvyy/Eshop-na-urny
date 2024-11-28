@@ -6,4 +6,4 @@ const schema = mongoose.Schema({
   color: { type: String, required: true },
 });
 
-module.exports = mongoose.model("Cat", schema);
+module.exports = mongoose.model("Urn", schema);

@@ -1,30 +1,30 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { updateCat, getCat } from "../../models/Cat";
+import { updateUrn, getUrn } from "../../models/Urn";
 
 export default function CatUpdateForm() {
   const { id } = useParams();
-  const [cat, setCat] = useState();
+  const [urn, setUrn] = useState();
   const [isLoaded, setLoaded] = useState(false);
   const [info, setInfo] = useState();
   const [formData, setFormData] = useState();
   const navigate = useNavigate();
 
   const load = async () => {
-    const data = await getCat(id);
+    const data = await getUrn(id);
     if (data.status === 500 || data.status === 404) return setLoaded(null);
     if (data.status === 200) {
-      setCat(data.payload);
+      setUrn(data.payload);
       setLoaded(true);
     }
   };
 
   const postForm = async () => {
-    const cat = await updateCat(id, formData);
-    if (cat.status === 200) {
-      navigate(`/cat/${id}`);
+    const urn = await updateUrn(id, formData);
+    if (urn.status === 200) {
+      navigate(`/urn/${id}`);
     } else {
-      setInfo(cat.msg);
+      setInfo(urn.msg);
     }
   };
 
@@ -44,7 +44,7 @@ export default function CatUpdateForm() {
   if (isLoaded === null) {
     return (
       <>
-        <p>Cat not found</p>
+        <p>Urn not found</p>
       </>
     );
   }
@@ -52,7 +52,7 @@ export default function CatUpdateForm() {
   if (!isLoaded) {
     return (
       <>
-        <p>Cat is loading...</p>
+        <p>Urn is loading...</p>
       </>
     );
   }
@@ -64,15 +64,15 @@ export default function CatUpdateForm() {
       <form>
         <input
           type="text"
-          defaultValue={cat.name}
+          defaultValue={urn.name}
           name="name"
           required
-          placeholder="Enter cat name"
+          placeholder="Enter urn name"
           onChange={(e) => handleChange(e)}
         />
         <input
           type="number"
-          defaultValue={cat.legs}
+          defaultValue={urn.legs}
           name="legs"
           required
           placeholder="Enter legs"
@@ -80,13 +80,13 @@ export default function CatUpdateForm() {
         />
         <input
           type="text"
-          defaultValue={cat.color}
+          defaultValue={urn.color}
           name="color"
           required
           placeholder="Enter color"
           onChange={(e) => handleChange(e)}
         />
-        <button onClick={handlePost}>Update cat</button>
+        <button onClick={handlePost}>Update urn</button>
       </form>
       <Link to={"/"}>
         <p>Go back</p>

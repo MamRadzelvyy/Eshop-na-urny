@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { createCat } from "../../models/Cat";
+import { useState } from "react";
+import { createUrn } from "../../models/Urn";
 
 export default function CatCreateForm() {
   const [formData, setFormData] = useState();
@@ -8,11 +8,11 @@ export default function CatCreateForm() {
   const navigate = useNavigate();
 
   const postForm = async () => {
-    const cat = await createCat(formData);
-    if (cat.status === 201) {
-      redirectToSuccessPage(cat.payload._id);
+    const urn = await createUrn(formData);
+    if (urn.status === 201) {
+      redirectToSuccessPage(urn.payload._id);
     } else {
-      setInfo(cat.msg);
+      setInfo(urn.msg);
     }
   }
   
@@ -26,7 +26,7 @@ export default function CatCreateForm() {
   }
 
   const redirectToSuccessPage = (id) => {
-    return navigate(`/createdcat/${id}`)
+    return navigate(`/createdurn/${id}`)
   }
 
   return (

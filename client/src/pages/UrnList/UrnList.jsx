@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
-import CatLink from "./CatLink";
+import UrnLink from "./UrnLink";
 import { useState, useEffect } from "react";
-import { getCats } from "../../models/Cat";
+import { getUrns } from "../../models/Urn";
 
-export default function CatList() {
-  const [cats, setCats] = useState();
+export default function UrnList() {
+  const [urns, setUrns] = useState();
   const [isLoaded, setLoaded] = useState(false);
 
   const load = async () => {
-    const data = await getCats();
+    const data = await getUrns();
     if (data.status === 500 || data.status === 404) return setLoaded(null);
     if (data.status === 200) {
-      setCats(data.payload);
+      setUrns(data.payload);
       setLoaded(true);
     }
   }
@@ -23,7 +23,7 @@ export default function CatList() {
   if (isLoaded === null) {
     return (
       <>
-        <p>Cats not found</p>
+        <p>Urns not found</p>
       </>
     )
   }
@@ -31,17 +31,17 @@ export default function CatList() {
   if (!isLoaded) {
     return (
       <>
-        <p>Cats are loading...</p>
+        <p>Urns are loading...</p>
       </>
     )
   }
 
   return (
     <>
-      <h1>Cat list</h1>
+      <h1>Urn list</h1>
       {
-        cats.map((cat, index) => (
-          <CatLink key={index} {...cat} />
+        urns.map((urn, index) => (
+          <UrnLink key={index} {...urn} />
         ))
       }
       <Link to={"/"}>

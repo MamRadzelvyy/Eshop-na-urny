@@ -1,41 +1,41 @@
-const Cat = require("../models/cats");
+const Urn = require("../models/urns");
 
-exports.getAllCats = async (req, res) => {
+exports.getAllUrns = async (req, res) => {
   try {
-    const result = await Cat.find();
+    const result = await Urn.find();
     if (result && result.length !== 0) {
       return res.status(200).send({
-        msg: "Cats found!",
+        msg: "Urns found!",
         payload: result,
       });
     }
-    res.status(404).send({ msg: "Cats not found" });
+    res.status(404).send({ msg: "Urns not found" });
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
-exports.getCatById = async (req, res) => {
+exports.getUrnById = async (req, res) => {
   try {
-    const result = await Cat.findById(req.params.id);
+    const result = await Urn.findById(req.params.id);
     if (result) {
       return res.status(200).send({
-        msg: "Cat found",
+        msg: "Urn found",
         payload: result,
       });
     }
-    res.status(404).send({ msg: "Cat not found" });
+    res.status(404).send({ msg: "Urn not found" });
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
-exports.deleteCat = async (req, res) => {
+exports.deleteUrn = async (req, res) => {
   try {
-    const result = await Cat.findByIdAndDelete(req.params.id);
+    const result = await Urn.findByIdAndDelete(req.params.id);
     if (result) {
       return res.status(200).send({
-        msg: "Cat deleted",
+        msg: "Urn deleted",
       });
     }
     res.status(500).send({ msg: "Something went wrong" });
@@ -44,31 +44,31 @@ exports.deleteCat = async (req, res) => {
   }
 };
 
-exports.updateCat = async (req, res) => {
+exports.updateUrn = async (req, res) => {
   try {
     const data = {
       name: req.body.name,
       legs: req.body.legs,
       color: req.body.color,
     };
-    const result = await Cat.findByIdAndUpdate(req.params.id, data);
+    const result = await Urn.findByIdAndUpdate(req.params.id, data);
     if (result) {
       return res.status(200).send({
-        msg: "Cat updated",
+        msg: "Urn updated",
         payload: result,
       });
     }
     res.status(500).send({
-      msg: "Cat was not updated",
+      msg: "Urn was not updated",
     });
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
-exports.createCat = async (req, res) => {
+exports.createUrn = async (req, res) => {
   try {
-    const data = new Cat({
+    const data = new Urn({
       name: req.body.name,
       legs: req.body.legs,
       color: req.body.color,
@@ -76,12 +76,12 @@ exports.createCat = async (req, res) => {
     const result = await data.save();
     if (result) {
       return res.status(201).send({
-        msg: "Cat created",
+        msg: "Urn created",
         payload: result,
       });
     }
     res.status(500).send({
-      msg: "Cat was not created",
+      msg: "Urn was not created",
     });
   } catch (error) {
     res.status(500).send(error);
