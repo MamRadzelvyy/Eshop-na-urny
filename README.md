@@ -11,6 +11,6 @@ Vytvořen v Reactu + Vite
 
 <div align=center>
   
-  [![My Skills](https://skillicons.dev/icons?i=js,mongodb,html,css,express,react,nodejs,tailwind&perline=2)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=js,mongodb,html,css,express,react,nodejs,tailwind&perline=4)](https://skillicons.dev)
   
 </div>
