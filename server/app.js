@@ -5,8 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require("cors");
 const mongoose = require('mongoose');
+const MY_KEY = require("./mongodb.js");
 mongoose
-.connect('mongodb+srv://admin:adminadmin@cluster0.rrgae.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+.connect(MY_KEY)
 .then(() => console.log("Database connected"))
 .catch((err) => console.log(err));
 
