@@ -10,5 +10,7 @@ Vytvořen v Reactu + Vite
 - Express
 
 <div align=center>
+  
   [![My Skills](https://skillicons.dev/icons?i=js,html,css,express,nodejs,mongodb,tailwind)](https://skillicons.dev)
+  
 </div>
