@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const MY_KEY = require("./mongodb.js");
 mongoose
 .connect(MY_KEY)
-.then(() => console.log("Database connected"))
+.then(() => console.log("Databáze připojena ✅😊"))
 .catch((err) => console.log(err));
 
 var indexRouter = require('./routes/index');
@@ -16,7 +16,7 @@ var urnsRouter = require('./routes/urns');
 
 var app = express();
 
-// view engine setup
+// nastavení view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
