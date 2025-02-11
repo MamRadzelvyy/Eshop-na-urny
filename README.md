@@ -1,4 +1,9 @@
 # Moje ročníková práce na téma "Eshop na urny"
+## Ročníková práce
+### Práce se skládá z třech částí
+- Projekt
+- Písemná práce
+- Obhajoba
 ## Použité technologie
 ### Klient
 Vytvořen v Reactu + Vite
