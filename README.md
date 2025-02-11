@@ -5,7 +5,7 @@
 - Písemná práce
 - Obhajoba
 ### Projekt
-- Webové aplikace – Eshop
+- Webové aplikace – **Eshop**
 - Datum odevzdání je od **1.9.2024** do **28.4.2025**
 - Můj vedoucí je [Jan Till](https://github.com/honziktillu)
 ### Písemná práce
