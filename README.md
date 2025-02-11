@@ -38,7 +38,7 @@ Vytvořen v Reactu + Vite
 ### [Tailwind CSS](https://tailwindcss.com/)
 - **Tailwind CSS** je utility-first CSS framework, který poskytuje nástroje pro rychlé vytváření moderních, responsivních a přizpůsobitelných webových stránek. Místo definování specifických tříd pro každý komponent, umožňuje používat utility třídy pro styling přímo v HTML nebo JSX kódu. To zjednodušuje úpravy vzhledu bez nutnosti psát vlastní CSS.
 ### [Lucide react](https://lucide.dev/icons/)
-**Lucide React** je knihovna pro React, která poskytuje sadu ikonek, které jsou vektorové a plně přizpůsobitelné. Tento balíček obsahuje širokou škálu ikon, které mohou být snadno integrovány do React aplikací. Lucide je navrženo tak, aby bylo snadno použitelné a flexibilní, umožňuje snadnou manipulaci s velikostí, barvami a dalšími vlastnostmi ikon.
+- **Lucide React** je knihovna pro React, která poskytuje sadu ikonek, které jsou vektorové a plně přizpůsobitelné. Tento balíček obsahuje širokou škálu ikon, které mohou být snadno integrovány do React aplikací. Lucide je navrženo tak, aby bylo snadno použitelné a flexibilní, umožňuje snadnou manipulaci s velikostí, barvami a dalšími vlastnostmi ikon.
 ### Server
 - MongoDB
 - Express
