@@ -26,6 +26,12 @@
 - Po obhajobě se dozvíte známku od vedoucího práce, známku za písemnou část, známku za obhajobu od komise a výslednou známku
 - Pokud v srpnu neopravíte nebo neobhájíte ročníkovou práci, tak si můžete zažádat o opakování **třetího ročníku**
 - Pokud z ročníkové práce dostanete známku **4** nebo **5**, tak možnost na dlouhodobou praktickou maturitní práci Vám zaniká
+
+## Záměr mojí práce
+-
+## Závěr
+-
+
 ## Použité technologie
 ### Klient
 Vytvořen v Reactu + Vite
@@ -46,6 +52,7 @@ Vytvořen v Reactu + Vite
 - **MongoDB** je NoSQL databáze, která ukládá data ve formátu JSON-like (BSON), což znamená, že data jsou strukturována jako dokumenty, nikoliv jako řádky v tabulkách, jak je tomu u tradičních SQL databází. MongoDB je flexibilní a snadno škálovatelná, což ji činí ideální pro aplikace, které potřebují pracovat s velkým množstvím nestrukturovaných nebo polostrukturovaných dat. Je oblíbená pro použití v moderních aplikacích, které vyžadují rychlý vývoj a jednoduché horizontální škálování.
 ### [Express](https://expressjs.com/)
 - **Express** je minimalistický a flexibilní webový framework pro Node.js, který usnadňuje tvorbu serverových aplikací a API. Díky své jednoduchosti a rozsáhlé sadě funkcí umožňuje Express rychlé a efektivní nastavení serveru, správu směrování (routing), middleware a zpracování požadavků. Je velmi populární při vývoji RESTful API a moderních webových aplikací. Express je jádrem mnoha full-stack JavaScript řešení, zejména v kombinaci s MongoDB a Node.js (tzv. MERN stack).
+
 <div align=center>
   
   [![My Skills](https://skillicons.dev/icons?i=js,mongodb,html,css,express,react,nodejs,tailwind&perline=4)](https://skillicons.dev)
