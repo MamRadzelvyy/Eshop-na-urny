@@ -8,6 +8,7 @@
 - Webové aplikace – **Eshop**
 - Datum odevzdání je od **1.9.2024** do **28.4.2025**
 - Můj vedoucí je [Jan Till](https://github.com/honziktillu)
+- Projekt umožněn díky [SPŠMB](https://www.spsmb.cz/)
 ### Písemná práce
 - Minimální počet **5 normostran**
 - Celkový rozsah textové části, bez zahrnutí obrázků, tabulek, grafů, výpisů zdrojového kódu, titulní strany, obsahu, prohlášení a zadání a citací pod čarou, by měl být minimálně **5 normostran**. Jazyková úprava musí odpovídat aktuálním pravidlům českého pravopisu.
@@ -28,10 +29,9 @@
 - Pokud z ročníkové práce dostanete známku **4** nebo **5**, tak možnost na dlouhodobou praktickou maturitní práci Vám zaniká
 
 ### Záměr mojí práce
--
+- Cílem mé práce je vytvořit tematicky laděný, uživatelsky přívětivý e-shop zaměřený na prodej uren. Kladu důraz na snadnou navigaci, přehlednost a intuitivní nákupní proces, aby zákazníci mohli bez komplikací najít to, co hledají. Zároveň se snažím o seriózní a citlivý přístup k tématu a o dosažení profesionální úrovně srovnatelné s předními e-shopy v tomto segmentu.
 ### Závěr
--
-
+-Práce na této ročníkové práci mě bavila a věnoval jsem jí co nejvíce volného času, abych projekt neustále vylepšoval a posouval na vyšší úroveň. Tento proces mi přinesl mnoho nových zkušeností a posílil mou motivaci pokračovat v tvorbě podobných projektů a přijímat nové výzvy. Snažil jsem se přistupovat k úkolu kreativně a přizpůsobit vše tak, aby byl výsledný e-shop co nejpřístupnější a nejpřívětivější pro uživatele.
 ## Použité technologie
 ### Klient
 **Vytvořen v Reactu + Vite**
