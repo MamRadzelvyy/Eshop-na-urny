@@ -22,10 +22,10 @@
 - Časová náročnost by měla být kolem **10-15 minut**
 ### Hodnocení
 - Jste hodnocení za všechny tři část – **písemná část**, **praktická část** a **obhajoba**
-- Pokud z některé části budete hodnoceni známkou 5, tak Vás čeká oprava v srpnu z předmětu Praxe
+- Pokud z některé části budete hodnoceni známkou **5**, tak Vás čeká oprava v srpnu z předmětu Praxe
 - Po obhajobě se dozvíte známku od vedoucího práce, známku za písemnou část, známku za obhajobu od komise a výslednou známku
-- Pokud v srpnu neopravíte nebo neobhájíte ročníkovou práci, tak si můžete zažádat o opakování třetího ročníku
-- Pokud z ročníkové práce dostanete známku 4 nebo 5, tak možnost na dlouhodobou praktickou maturitní práci Vám zaniká
+- Pokud v srpnu neopravíte nebo neobhájíte ročníkovou práci, tak si můžete zažádat o opakování **třetího ročníku**
+- Pokud z ročníkové práce dostanete známku **4** nebo **5**, tak možnost na dlouhodobou praktickou maturitní práci Vám zaniká
 ## Použité technologie
 ### Klient
 Vytvořen v Reactu + Vite
