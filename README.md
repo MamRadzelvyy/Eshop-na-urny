@@ -34,7 +34,7 @@
 - Práce na této ročníkové práci mě bavila a věnoval jsem jí co nejvíce volného času, abych projekt neustále vylepšoval a posouval na vyšší úroveň. Tento proces mi přinesl mnoho nových zkušeností a posílil mou motivaci pokračovat v tvorbě podobných projektů a přijímat nové výzvy.
 ## Použité technologie
 ### Klient
-**Vytvořen v Reactu + Vite**
+**Vytvořen v [Reactu](https://react.dev/) + [Vite](https://vite.dev/)**
 - shadcn/ui (komponenty)
 - Tailwind CSS (stylování)
 - Lucide react (ikony)
