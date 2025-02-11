@@ -7,7 +7,7 @@
 ### Projekt
 - Webové aplikace – Eshop
 - Datum odevzdání je do 28.4.2025
-- Můj vedoucí je Jan Till till@spsmb.cz / !(55)[44]https://github.com/honziktillu
+- Můj vedoucí je [Jan Till](https://github.com/honziktillu) till@spsmb.cz
 ### Písemná práce
 - Minimální počet 5 normostran
 - Celkový rozsah textové části, bez zahrnutí obrázků, tabulek, grafů, výpisů zdrojového kódu, titulní strany, obsahu, prohlášení a zadání a citací pod čarou, by měl být minimálně 5 normostran. Jazyková úprava musí odpovídat aktuálním pravidlům českého pravopisu.
