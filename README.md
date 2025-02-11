@@ -10,7 +10,7 @@
 - Můj vedoucí je [Jan Till](https://github.com/honziktillu)
 ### Písemná práce
 - Minimální počet **5 normostran**
-- Celkový rozsah textové části, bez zahrnutí obrázků, tabulek, grafů, výpisů zdrojového kódu, titulní strany, obsahu, prohlášení a zadání a citací pod čarou, by měl být minimálně 5 normostran. Jazyková úprava musí odpovídat aktuálním pravidlům českého pravopisu.
+- Celkový rozsah textové části, bez zahrnutí obrázků, tabulek, grafů, výpisů zdrojového kódu, titulní strany, obsahu, prohlášení a zadání a citací pod čarou, by měl být minimálně **5 normostran**. Jazyková úprava musí odpovídat aktuálním pravidlům českého pravopisu.
 - Do rozsahu **5 normostran** se nezapočítává text generovaný pomocí umělé inteligence, informace o použitých technologiích, nebo obecná znalost. Tento rozsah zahrnuje pouze text, který se přímo týká řešené problematiky a konkrétního zpracování tématu žáka. To znamená, že do těchto **5 normostran** se počítá pouze část, kde žák podrobně popisuje, jakým způsobem vypracovával svůj projekt, jaké postupy použil, s jakými problémy se setkal, a jakým způsobem tyto problémy řešil. Tento obsah by měl jasně reflektovat vlastní přínos a analytickou práci žáka, přičemž technické detaily nebo obecné informace, které nejsou součástí vlastního zpracování tématu, se do rozsahu nepočítají.
 ### Obhajoba
 - Svoji práci si musíte obhájit před komisí.
