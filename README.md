@@ -33,12 +33,12 @@ Vytvořen v Reactu + Vite
 - Tailwind CSS (stylování)
 - Lucide react (ikony)
 
-### Shadcn/ui
-- _Shadcn/ui_ je knihovna pro vytváření moderních a plně přizpůsobitelných uživatelských rozhraní v Reactu. Umožňuje rychlou tvorbu komponent s využitím principů návrhu, jako je modularita a přizpůsobitelnost, což usnadňuje implementaci UI ve vašich aplikacích. Využívá Tailwind CSS pro styling, což zajišťuje efektivní a flexibilní úpravy vzhledu.
-### Tailwind CSS
-- _Tailwind CSS_ je utility-first CSS framework, který poskytuje nástroje pro rychlé vytváření moderních, responsivních a přizpůsobitelných webových stránek. Místo definování specifických tříd pro každý komponent, umožňuje používat utility třídy pro styling přímo v HTML nebo JSX kódu. To zjednodušuje úpravy vzhledu bez nutnosti psát vlastní CSS.
-### Lucide react
-- _Lucide React_ je knihovna pro React, která poskytuje sadu ikonek, které jsou vektorové a plně přizpůsobitelné. Tento balíček obsahuje širokou škálu ikon, které mohou být snadno integrovány do React aplikací. Lucide je navrženo tak, aby bylo snadno použitelné a flexibilní, umožňuje snadnou manipulaci s velikostí, barvami a dalšími vlastnostmi ikon.
+### [Shadcn/ui](https://ui.shadcn.com/)
+- **Shadcn/ui** je knihovna pro vytváření moderních a plně přizpůsobitelných uživatelských rozhraní v Reactu. Umožňuje rychlou tvorbu komponent s využitím principů návrhu, jako je modularita a přizpůsobitelnost, což usnadňuje implementaci UI ve vašich aplikacích. Využívá Tailwind CSS pro styling, což zajišťuje efektivní a flexibilní úpravy vzhledu.
+### [Tailwind CSS](https://tailwindcss.com/)
+- **Tailwind CSS** je utility-first CSS framework, který poskytuje nástroje pro rychlé vytváření moderních, responsivních a přizpůsobitelných webových stránek. Místo definování specifických tříd pro každý komponent, umožňuje používat utility třídy pro styling přímo v HTML nebo JSX kódu. To zjednodušuje úpravy vzhledu bez nutnosti psát vlastní CSS.
+### [Lucide react](https://lucide.dev/icons/)
+**Lucide React** je knihovna pro React, která poskytuje sadu ikonek, které jsou vektorové a plně přizpůsobitelné. Tento balíček obsahuje širokou škálu ikon, které mohou být snadno integrovány do React aplikací. Lucide je navrženo tak, aby bylo snadno použitelné a flexibilní, umožňuje snadnou manipulaci s velikostí, barvami a dalšími vlastnostmi ikon.
 ### Server
 - MongoDB
 - Express
