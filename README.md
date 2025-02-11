@@ -27,9 +27,9 @@
 - Pokud v srpnu neopravíte nebo neobhájíte ročníkovou práci, tak si můžete zažádat o opakování **třetího ročníku**
 - Pokud z ročníkové práce dostanete známku **4** nebo **5**, tak možnost na dlouhodobou praktickou maturitní práci Vám zaniká
 
-## Záměr mojí práce
+### Záměr mojí práce
 -
-## Závěr
+### Závěr
 -
 
 ## Použité technologie
