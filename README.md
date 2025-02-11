@@ -31,7 +31,7 @@
 ### Záměr mojí práce
 - Cílem mé práce je vytvořit tematicky laděný, uživatelsky přívětivý e-shop zaměřený na prodej uren. Kladu důraz na snadnou navigaci, přehlednost a intuitivní nákupní proces, aby zákazníci mohli bez komplikací najít to, co hledají. Zároveň se snažím o seriózní a citlivý přístup k tématu a o dosažení profesionální úrovně srovnatelné s předními e-shopy v tomto segmentu.
 ### Závěr
--Práce na této ročníkové práci mě bavila a věnoval jsem jí co nejvíce volného času, abych projekt neustále vylepšoval a posouval na vyšší úroveň. Tento proces mi přinesl mnoho nových zkušeností a posílil mou motivaci pokračovat v tvorbě podobných projektů a přijímat nové výzvy. Snažil jsem se přistupovat k úkolu kreativně a přizpůsobit vše tak, aby byl výsledný e-shop co nejpřístupnější a nejpřívětivější pro uživatele.
+- Práce na této ročníkové práci mě bavila a věnoval jsem jí co nejvíce volného času, abych projekt neustále vylepšoval a posouval na vyšší úroveň. Tento proces mi přinesl mnoho nových zkušeností a posílil mou motivaci pokračovat v tvorbě podobných projektů a přijímat nové výzvy. Snažil jsem se přistupovat k úkolu kreativně a přizpůsobit vše tak, aby byl výsledný e-shop co nejpřístupnější a nejpřívětivější pro uživatele.
 ## Použité technologie
 ### Klient
 **Vytvořen v Reactu + Vite**
