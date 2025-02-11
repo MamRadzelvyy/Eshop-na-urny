@@ -34,7 +34,7 @@
 
 ## Použité technologie
 ### Klient
-Vytvořen v Reactu + Vite
+**Vytvořen v Reactu + Vite**
 - shadcn/ui (komponenty)
 - Tailwind CSS (stylování)
 - Lucide react (ikony)
