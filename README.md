@@ -3,7 +3,7 @@
 ### Práce se skládá z třech částí
 - Projekt
 - Písemná práce
-- Obhajoba
+- Obhajoba $${\color{orange}Orange}$$
 ### Projekt
 - Webové aplikace – Eshop
 - Datum odevzdání je do 28.4.2025
