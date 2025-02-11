@@ -6,7 +6,7 @@
 - Obhajoba
 ### Projekt
 - Webové aplikace – Eshop
-- Datum odevzdání je do 28.4.2025
+- Datum odevzdání je od **začátku třetího ručníku** do **28.4.2025**
 - Můj vedoucí je [Jan Till](https://github.com/honziktillu)
 ### Písemná práce
 - Minimální počet 5 normostran
