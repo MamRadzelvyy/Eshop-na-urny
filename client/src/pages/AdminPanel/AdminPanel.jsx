@@ -1,0 +1,28 @@
+import React from 'react'
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { PackageOpen, Cylinder } from "lucide-react";
+import classNames from "classnames";
+
+export default function AdminPanel() {
+  return (
+    <>
+      <div className="container mx-auto flex flex-col items-center justify-center gap-2 grid_background min-h-screen">
+        <div className={classNames("container flex flex-col gap-2 justify-center items-center mx-auto")}>
+          <Button className="bg-red-950 hover:bg-red-900 text-lg py-4 px-6">
+            <Link to={"/createurn"} className="flex items-center">
+              <PackageOpen className="mr-2" />
+              Create urn
+            </Link>
+          </Button>
+          <Button className="text-lg py-4 px-6">
+            <Link to={"/urns"} className="flex items-center">
+              <Cylinder className="mr-2" />
+              Urns
+            </Link>
+          </Button>
+        </div>
+      </div>
+    </>
+  );
+}

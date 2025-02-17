@@ -35,7 +35,7 @@ export default function UrnCreateForm() {
   return (
     <>
       <div className="container mx-auto flex flex-col items-center justify-center gap-2 grid_background min-h-screen">
-        <h1 className="text-2xl font-bold">Urn create form</h1>
+        <h1 className="text-2xl">Urn create form</h1>
         <div className="flex flex-col gap-2 max-w-xl w-full">
           <Form>
             <Input
@@ -43,7 +43,7 @@ export default function UrnCreateForm() {
               type="text"
               name="name"
               required
-              placeholder="Enter Urn name"
+              placeholder="Enter cat name"
               onChange={(e) => handleChange(e)}
             />
             <Input

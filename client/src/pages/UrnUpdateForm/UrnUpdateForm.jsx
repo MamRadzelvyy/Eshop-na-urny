@@ -1,8 +1,11 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { updateUrn, getUrn } from "../../models/Urn";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Form } from "../../components/ui/form.jsx";
 
-export default function CatUpdateForm() {
+export default function UrnUpdateForm() {
   const { id } = useParams();
   const [urn, setUrn] = useState();
   const [isLoaded, setLoaded] = useState(false);
@@ -44,7 +47,7 @@ export default function CatUpdateForm() {
   if (isLoaded === null) {
     return (
       <>
-        <p>Urn not found</p>
+        <p>Urny nenalezeny</p>
       </>
     );
   }
@@ -52,17 +55,19 @@ export default function CatUpdateForm() {
   if (!isLoaded) {
     return (
       <>
-        <p>Urn is loading...</p>
+        <p>Urny se načítají...</p>
       </>
     );
   }
 
   return (
     <>
-      <h1>Cat update form</h1>
-      <p>{id}</p>
-      <form>
-        <input
+    <div className="container mx-auto flex flex-col items-center justify-center gap-2 grid_background min-h-screen">
+      <h1 className="text-2xl font-bold">Urn update form</h1>
+      <div className="flex flex-col gap-2 max-w-xl w-full">
+      <p className="text-gray-600 font-light float-right ">{id}</p>
+      <Form>
+        <Input
           type="text"
           defaultValue={urn.name}
           name="name"
@@ -70,7 +75,7 @@ export default function CatUpdateForm() {
           placeholder="Enter urn name"
           onChange={(e) => handleChange(e)}
         />
-        <input
+        <Input
           type="number"
           defaultValue={urn.legs}
           name="legs"
@@ -78,7 +83,7 @@ export default function CatUpdateForm() {
           placeholder="Enter legs"
           onChange={(e) => handleChange(e)}
         />
-        <input
+        <Input
           type="text"
           defaultValue={urn.color}
           name="color"
@@ -86,11 +91,14 @@ export default function CatUpdateForm() {
           placeholder="Enter color"
           onChange={(e) => handleChange(e)}
         />
-        <button onClick={handlePost}>Update urn</button>
-      </form>
-      <Link to={"/"}>
-        <p>Go back</p>
+        <Button onClick={handlePost} className="w-full text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                Update Urn
+              </Button>
+      </Form></div>
+      <Link to={"/adminpanel"}>
+      <Button variant="outline">Go back</Button>
       </Link>
+      </div>
     </>
   );
 }

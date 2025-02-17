@@ -54,7 +54,7 @@ export default function Header() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="text-center flex items-center justify-center flex-col p-4 gap-2">
                   <ShoppingBasket  size={30} />
-                  <span>Žádnou bábu jste nepřidal</span>
+                  <span>Váš košík je prázdný</span>
                 </DropdownMenuContent>
               </DropdownMenu>
             </Link>

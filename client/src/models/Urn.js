@@ -61,7 +61,7 @@ export const updateUrn = async (id, formData) => {
   };
 };
 export const deleteUrn = async (id) => {
-  const req = await fetch(`http://localhost:3000/unrs/${id}`, {
+  const req = await fetch(`http://localhost:3000/urns/${id}`, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",

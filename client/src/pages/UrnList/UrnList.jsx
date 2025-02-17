@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import UrnLink from "./UrnLink";
 import { useState, useEffect } from "react";
 import { getUrns } from "../../models/Urn";
+import { Button } from "@/components/ui/button";
 
 export default function UrnList() {
   const [urns, setUrns] = useState();
@@ -38,15 +39,19 @@ export default function UrnList() {
 
   return (
     <>
-      <h1>Urn list</h1>
+<div className="container mx-auto flex flex-col items-center justify-center gap-2 grid_background min-h-screen">
+      <h1 className="text-2xl font-bold">Urn list</h1>
+      <div className="text-gray-600 font-light float-right">
       {
         urns.map((urn, index) => (
           <UrnLink key={index} {...urn} />
         ))
       }
-      <Link to={"/"}>
-        <p>Go back</p>
+      </div>
+      <Link to={"/adminpanel"}>
+      <Button variant="outline" >Go back</Button>
       </Link>
+      </div>
     </>
   );
 }
