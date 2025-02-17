@@ -9,7 +9,7 @@ export default function CreatedUrn() {
       <div className="container mx-auto flex flex-col items-center justify-center gap-2 grid_background min-h-screen">
         <h1 className="text-2xl font-bold">Created Urn</h1>
         <p className="text-lg">
-          <span className="text-gray-800 font-normal">ID:</span>  
+          <span className="text-gray-800 font-normal">ID:</span>
           <span className="text-gray-600 font-light ml-2">{id}</span>
         </p>
         <Link to={`/urn/${id}`}>

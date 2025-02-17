@@ -57,21 +57,31 @@ export default function UrnView() {
         <div className="max-w-3xl mx-auto w-full">
           <h1 className="text-2xl font-bold">Urn view</h1>
           <p className="font-medium block w-full">
-            ID: <span className="text-gray-600 font-light float-right">{id}</span>
+            ID:{" "}
+            <span className="text-gray-600 font-light float-right">{id}</span>
           </p>
           <p className="font-medium block w-full">
-            Name: <span className="text-gray-600 font-light float-right">{urn.name}</span>
+            Name:{" "}
+            <span className="text-gray-600 font-light float-right">
+              {urn.name}
+            </span>
           </p>
           <p className="font-medium block w-full">
-            Legs: <span className="text-gray-600 font-light float-right">{urn.legs}</span>
+            Legs:{" "}
+            <span className="text-gray-600 font-light float-right">
+              {urn.legs}
+            </span>
           </p>
           <p className="font-medium block w-full">
-            Color: <span className="text-gray-600 font-light float-right">{urn.color}</span>
+            Color:{" "}
+            <span className="text-gray-600 font-light float-right">
+              {urn.color}
+            </span>
           </p>
           <form className="flex flex-col gap-2">
             <Input type="text" placeholder={urn.name} onChange={handleChange} />
-            <Button 
-              onClick={handleDelete} 
+            <Button
+              onClick={handleDelete}
               className="bg-red-950 hover:bg-red-900 text-lg py-4 px-6"
             >
               Delete
