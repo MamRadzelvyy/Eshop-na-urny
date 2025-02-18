@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { PackageOpen, Cylinder } from "lucide-react";
 import classNames from "classnames";
-import { ArrowBigDown } from "lucide-react";
+import { ArrowDown } from 'lucide-react';
 
 export default function AdminPanel() {
   return (
@@ -28,7 +28,7 @@ export default function AdminPanel() {
           </Button>
           <Button className="text-lg py-4 px-6 bg-gray-500 hover:bg-gray-400">
             <Link to={"/"} className="flex items-center">
-              <ArrowBigDown className="mr-2" />
+              <ArrowDown className="mr-2" />
               Main page
             </Link>
           </Button>

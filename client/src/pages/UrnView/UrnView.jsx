@@ -86,11 +86,14 @@ export default function UrnView() {
             >
               Delete
             </Button>
-            {info && <p className="text-red-950 text-center">{info}</p>}
+            <div className="relative h-0">
+              {info && (
+                <p className="text-red-950 text-center absolute left-1/2 transform -translate-x-1/2">{info}</p>
+              )}
+            </div>
           </form>
 
-          {/* Flex container pro tlačítka */}
-          <div className="flex justify-between mt-4">
+          <div className="flex justify-between mt-0">
             <Link to={`/updateurn/${id}`}>
               <Button className="w-full text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                 Update Urn

@@ -7,20 +7,43 @@ import UrnView from "./UrnView/UrnView";
 import UrnList from "./UrnList/UrnList";
 import CreatedUrn from "./UrnCreateForm/CreatedUrn";
 import AdminPanel from "./AdminPanel/AdminPanel";
+import Login from "./Login/Login";
+import Register from "./Register/Register";
+import Cooperation from "./Cooperation/Cooperation";
+import UrnsPanel from "./UrnsPanel/UrnsPanel";
+import Contact from "./Contact/Contact";
+import Blog from "./Blog/Blog";
+import AnimalUrns from "./AnimalsUrns/AnimalUrns";
 
 export default function AppRoutes() {
   return (
     <>
       <BrowserRouter>
         <Routes>
+
+          {/*Home*/}
           <Route path="/" element={<MainPage />} />
-          <Route path="/about" element={<About />} />
+
+          {/*Admin Panel*/}
           <Route path="/createurn" element={<UrnCreateForm />} />
           <Route path="/updateurn/:id" element={<UrnUpdateForm />} />
           <Route path="/urn/:id" element={<UrnView />} />
           <Route path="/urns" element={<UrnList />} />
           <Route path="/createdurn/:id" element={<CreatedUrn />} />
           <Route path="/adminpanel" element={<AdminPanel />} />
+
+          {/*Autentizace*/}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
+          {/*Header Panely*/}
+          <Route path="/urnspanel" element={<UrnsPanel />} />
+          <Route path="/animalurns" element={<AnimalUrns />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/cooperation" element={<Cooperation />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/contact" element={<Contact />} />
+
         </Routes>
       </BrowserRouter>
     </>

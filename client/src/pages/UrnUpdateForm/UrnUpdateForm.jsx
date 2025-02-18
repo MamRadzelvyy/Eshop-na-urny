@@ -65,7 +65,10 @@ export default function UrnUpdateForm() {
     <div className="container mx-auto flex flex-col items-center justify-center gap-2 grid_background min-h-screen">
       <h1 className="text-2xl font-bold">Urn update form</h1>
       <div className="flex flex-col gap-2 max-w-xl w-full">
-      <p className="text-gray-600 font-light float-right ">{id}</p>
+      <p className="font-medium block w-full text-center">
+            ID:{" "}
+            <span className="text-gray-600 font-light text-center">{id}</span>
+          </p>
       <Form>
         <Input
           type="text"
