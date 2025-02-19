@@ -4,6 +4,9 @@ import Header from "@/components/Header";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { ArrowBigDown } from "lucide-react";
+import Footer from "@/components/Footer";
+
 
 export default function About() {
   return (
@@ -46,10 +49,31 @@ export default function About() {
             <p className="text-lg">
               Děkujeme, že jste si vybrali Eternia – místo, kde vzpomínky
               přetrvávají.
-            </p>
+            </p>{" "}
+            <div className="flex justify-center gap-4 mt-6">
+              <Button
+                variant="outline"
+                className="flex items-center gap-2 rounded-full px-4 py-2 bg-gray-100"
+              >
+                <ArrowBigDown size={16} /> Sdílet
+              </Button>
+              <Button
+                variant="outline"
+                className="flex items-center gap-2 rounded-full px-4 py-2 bg-gray-100"
+              >
+                <ArrowBigDown size={16} /> Tweet
+              </Button>
+              <Button
+                variant="outline"
+                className="flex items-center gap-2 rounded-full px-4 py-2 bg-gray-100"
+              >
+                <ArrowBigDown size={16} /> Pin It
+              </Button>
+            </div>
           </CardContent>
         </Card>
       </div>
+      <Footer/>
     </>
   );
 }
