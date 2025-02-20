@@ -25,3 +25,7 @@ body {
     linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
 }
+
+.text-shadow {
+  text-shadow: 2px 2px 8px #000;
+}

@@ -43,6 +43,9 @@ export default function AppRoutes() {
           <Route path="/cooperation" element={<Cooperation />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
+          
+          {/*Footer Panely*/}
+
 
         </Routes>
       </BrowserRouter>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Star, Palette, Award, Globe } from "lucide-react";
+import { Star, Palette, Award, } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="bg-gray-100 py-10 mt-16">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div>
-          <h3 className="text-lg font-semibold text-green-800 mb-3">
+          <h3 className="text-lg font-semibold  text-slate-700 mb-3">
             O nákupu
           </h3>
           <ul className="space-y-2 text-gray-600">
@@ -45,15 +45,15 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-green-800 mb-3">
+          <h3 className="text-lg font-semibold  text-slate-700 mb-3">
             O společnosti
           </h3>
           <ul className="space-y-2 text-gray-600">
             <li>
-              <Link to="#">O nás</Link>
+              <Link to="/about">O nás</Link>
             </li>
             <li>
-              <Link to="#">Kontakty</Link>
+              <Link to="/contact">Kontakty</Link>
             </li>
             <li>
               <Link to="#">Poradna</Link>
@@ -71,7 +71,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-green-800 mb-3">
+          <h3 className="text-lg font-semibold text-slate-700 mb-3">  
             Vše k partnerům
           </h3>
           <ul className="space-y-2 text-gray-600">
@@ -92,19 +92,19 @@ export default function Footer() {
 
         <div className="space-y-4">
           <Benefit
-            icon={<Star size={24} className="text-green-700" />}
+            icon={<Star size={24} className=" text-slate-700" />}
             title="Rozmanitý sortiment"
           >
             V naší nabídce najdete širokou škálu unikátních modelů.
           </Benefit>
           <Benefit
-            icon={<Palette size={24} className="text-green-700" />}
+            icon={<Palette size={24} className=" text-slate-700" />}
             title="Moderní a inovativní design"
           >
             Pravidelně přinášíme nejnovější trendy v oblasti pohřebnictví.
           </Benefit>
           <Benefit
-            icon={<Award size={24} className="text-green-700" />}
+            icon={<Award size={24} className=" text-slate-700" />}
             title="Dlouholetá zkušenost"
           >
             Jsme tu pro vás již od roku 2006.
