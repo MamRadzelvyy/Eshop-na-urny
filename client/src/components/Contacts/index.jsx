@@ -7,8 +7,8 @@ export default function Contacts() {
     <>
     <h2 className="text-2xl font-semibold mt-8 text-center">Kontakty</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-      <Card className="shadow-lg rounded-xl p-4">
-        <CardContent className="flex flex-col gap-3">
+      <Card className="shadow-lg rounded-xl p-4 flex items-center justify-center">
+        <CardContent className="flex flex-col gap-3 !p-0">
           <p className="flex items-center gap-2">
             <Mail size={20} className="text-primary" />
             urny@eternia.cz

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { PackageOpen, Cylinder } from "lucide-react";
 import classNames from "classnames";
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, BookOpen  } from 'lucide-react';
 
 export default function AdminPanel() {
   return (
@@ -24,6 +24,12 @@ export default function AdminPanel() {
             <Link to={"/urns"} className="flex items-center">
               <Cylinder className="mr-2" />
               Urns
+            </Link>
+          </Button>
+          <Button className="text-lg py-4 px-6 bg-blue-500 hover:bg-blue-400">
+            <Link to={"/form"} className="flex items-center">
+              <BookOpen className="mr-2" />
+              Form
             </Link>
           </Button>
           <Button className="text-lg py-4 px-6 bg-gray-500 hover:bg-gray-400">

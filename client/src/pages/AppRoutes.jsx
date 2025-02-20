@@ -14,6 +14,7 @@ import UrnsPanel from "./UrnsPanel/UrnsPanel";
 import Contact from "./Contact/Contact";
 import Blog from "./Blog/Blog";
 import AnimalUrns from "./AnimalsUrns/AnimalUrns";
+import Form from "./AdminPanel/Form";
 
 export default function AppRoutes() {
   return (
@@ -31,6 +32,7 @@ export default function AppRoutes() {
           <Route path="/urns" element={<UrnList />} />
           <Route path="/createdurn/:id" element={<CreatedUrn />} />
           <Route path="/adminpanel" element={<AdminPanel />} />
+          <Route path="/form" element={<Form />} />
 
           {/*Autentizace*/}
           <Route path="/login" element={<Login />} />
