@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { createForm } from "@/models/form";
+import { createForm } from "@/models/Form";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -19,7 +19,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-white p-6 rounded-xl shadow-md">
+    <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-neutral-200 p-6 rounded-xl shadow-md">
       <div className="mb-4">
         <label className="block text-gray-700">Jméno</label>
         <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full p-2 border rounded-md" required />

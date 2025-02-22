@@ -15,6 +15,10 @@ import Contact from "./Contact/Contact";
 import Blog from "./Blog/Blog";
 import AnimalUrns from "./AnimalsUrns/AnimalUrns";
 import Form from "./AdminPanel/Form";
+import BlogView from "./Blog/BlogView";
+import BlogAdmin from "./AdminPanel/Blog";
+import BlogUpdateForm from "./AdminPanel/BlogUpdateForm";
+import BlogCreateForm from "./AdminPanel/BlogCreateForm";
 
 export default function AppRoutes() {
   return (
@@ -33,6 +37,9 @@ export default function AppRoutes() {
           <Route path="/createdurn/:id" element={<CreatedUrn />} />
           <Route path="/adminpanel" element={<AdminPanel />} />
           <Route path="/form" element={<Form />} />
+          <Route path="/blogadmin" element={<BlogAdmin />} />
+          <Route path="/update-blog/:id" element={<BlogUpdateForm />} />
+          <Route path="/create-blog/" element={<BlogCreateForm />} />
 
           {/*Autentizace*/}
           <Route path="/login" element={<Login />} />
@@ -44,7 +51,10 @@ export default function AppRoutes() {
           <Route path="/about" element={<About />} />
           <Route path="/cooperation" element={<Cooperation />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogView />} />
           <Route path="/contact" element={<Contact />} />
+
+          {/*Blog Panely*/}
           
           {/*Footer Panely*/}
 

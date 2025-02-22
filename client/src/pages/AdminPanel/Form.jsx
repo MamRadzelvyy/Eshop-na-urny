@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { deleteForm } from "@/models/form";
+import { deleteForm } from "@/models/Form";
 import { Trash2 } from "lucide-react";
 
 export default function Form() {
