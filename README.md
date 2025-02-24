@@ -53,6 +53,12 @@
 ### [Express](https://expressjs.com/)
 - **Express** je minimalistický a flexibilní webový framework pro Node.js, který usnadňuje tvorbu serverových aplikací a API. Díky své jednoduchosti a rozsáhlé sadě funkcí umožňuje Express rychlé a efektivní nastavení serveru, správu směrování (routing), middleware a zpracování požadavků. Je velmi populární při vývoji RESTful API a moderních webových aplikací. Express je jádrem mnoha full-stack JavaScript řešení, zejména v kombinaci s MongoDB a Node.js (tzv. MERN stack).
 
+### Použité nástroje
+- Framer-Motion
+- Moment.js
+- Socket.io
+- Stripe
+
 <div align=center>
   
   [![My Skills](https://skillicons.dev/icons?i=js,mongodb,html,css,express,react,nodejs,tailwind&perline=4)](https://skillicons.dev)
