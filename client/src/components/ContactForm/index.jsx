@@ -32,7 +32,7 @@ export default function ContactForm() {
         <label className="block text-gray-700">Zpráva</label>
         <textarea name="message" value={formData.message} onChange={handleChange} className="w-full p-2 border rounded-md" rows="4" required></textarea>
       </div>
-      <Button type="submit" className="w-full">Odeslat zprávu</Button>
+      <Button type="submit" className="w-full bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Odeslat zprávu</Button>
       {status && <p className="mt-4 text-center text-green-600">{status}</p>}
     </form>
   );

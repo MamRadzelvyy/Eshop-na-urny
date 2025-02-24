@@ -36,7 +36,7 @@ export default function Contacts() {
 
     <div className="text-center mt-20">
       <a href="mailto:urny@eternia.cz?subject=Spolupráce">
-        <Button className="px-6 py-2">Napsat e-mail</Button>
+        <Button className="px-6 py-2 bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm lg:px-5 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Napsat e-mail</Button>
       </a>
     </div>
   </>

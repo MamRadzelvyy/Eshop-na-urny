@@ -24,6 +24,7 @@ export default function Form() {
   };
 
   return (
+    <div className="grid_background min-h-screen">
     <div className="max-w-4xl mx-auto p-6">
       <h2 className="text-3xl font-bold text-center mb-6">
         Admin Panel – Přijaté formuláře
@@ -54,6 +55,7 @@ export default function Form() {
           <p>Žádné formuláře zatím nebyly odeslány.</p>
         )}
       </div>
+    </div>
     </div>
   );
 }

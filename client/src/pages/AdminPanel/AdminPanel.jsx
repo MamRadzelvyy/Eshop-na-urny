@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { PackageOpen, Cylinder } from "lucide-react";
 import classNames from "classnames";
-import { ArrowDown, BookOpen, Pilcrow  } from 'lucide-react';
+import { ArrowDown, BookOpen, Pilcrow } from "lucide-react";
 
 export default function AdminPanel() {
   return (
@@ -14,36 +14,37 @@ export default function AdminPanel() {
             "container flex flex-col gap-2 justify-center items-center mx-auto"
           )}
         >
-          <Button className="bg-red-950 hover:bg-red-900 text-lg py-4 px-6">
-            <Link to={"/createurn"} className="flex items-center">
+          <Link to={"/createurn"} className="flex items-center">
+            <Button className="bg-red-950 hover:bg-red-900 text-lg py-4 px-6">
               <PackageOpen className="mr-2" />
               Create urn
-            </Link>
-          </Button>
-          <Button className="text-lg py-4 px-6">
-            <Link to={"/urns"} className="flex items-center">
+            </Button>
+          </Link>
+          <Link to={"/urns"} className="flex items-center">
+            <Button className="text-lg py-4 px-6">
               <Cylinder className="mr-2" />
               Urns
-            </Link>
-          </Button>
-          <Button className="text-lg py-4 px-6 bg-blue-500 hover:bg-blue-400">
-            <Link to={"/form"} className="flex items-center">
+            </Button>
+          </Link>
+          <Link to={"/form"} className="flex items-center">
+            <Button className="text-lg py-4 px-6 bg-blue-500 hover:bg-blue-400">
               <BookOpen className="mr-2" />
               Form
-            </Link>
-          </Button>
-          <Button className="text-lg py-4 px-6 bg-green-500 hover:bg-green-400">
-            <Link to={"/blogadmin"} className="flex items-center">
+            </Button>
+          </Link>
+          <Link to={"/blogadmin"} className="flex items-center">
+            <Button className="text-lg py-4 px-6 bg-green-500 hover:bg-green-400">
               <Pilcrow className="mr-2" />
               Blog
-            </Link>
-          </Button>
-          <Button className="text-lg py-4 px-6 bg-gray-500 hover:bg-gray-400">
-            <Link to={"/"} className="flex items-center">
+            </Button>
+          </Link>
+
+          <Link to={"/"} className="flex items-center">
+            <Button className="text-lg py-4 px-6 bg-gray-500 hover:bg-gray-400">
               <ArrowDown className="mr-2" />
               Main page
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
       </div>
     </>
