@@ -9,32 +9,32 @@ const blogPosts = [
   {
     title: "Pohřeb a jeho zařízení",
     image: "../../src/assets/images/Jak-se-vyrovnat.png",
-    link: "/umrti1",
+    link: "/pohreb-a-jeho-narizeni",
   },
   {
-    title: "Úmrtí a právní záležitosti",
+    title: "Výběr urny a péče",
     image: "../../src/assets/images/Jak-vybrat-urnu.png",
-    link: "/umrti",
+    link: "/vyber-urny-a-pece",
   },
   {
-    title: "Kremace a alternativní způsoby pohřbu",
+    title: "Úmrtí zvířete",
     image: "../../src/assets/images/Mazlíčči-urny.png",
-    link: "/kremace",
+    link: "/umrti-zvirete",
   },
   {
-    title: "Pohřeb a jeho zařízení",
+    title: "Kremace a způsoby pohřbu",
     image: "../../src/assets/images/Pohřeb.png",
-    link: "/pohreb",
+    link: "/kremace-a-zpusoby-pohrbu",
+  },
+  {
+    title: "Události a zajímavosti",
+    image: "../../src/assets/images/Události.png",
+    link: "/udalosti-a-zajimavosti",
   },
   {
     title: "Úmrtí a právní záležitosti",
-    image: "../../src/assets/images/Události.png",
-    link: "/umrti2",
-  },
-  {
-    title: "Kremace a alternativní způsoby pohřbu",
     image: "../../src/assets/images/Zavěť.png",
-    link: "/kremace3",
+    link: "/umrti-a-pravni-zalezitosti",
   },
 ];
 

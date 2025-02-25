@@ -70,9 +70,11 @@ export default function Header() {
     >
       <ShoppingBasket size={40} className="text-gray-500 dark:text-gray-400" />
       <span className="text-gray-600 dark:text-gray-300 text-sm">Váš košík je prázdný</span>
+      <Link to="/cart">
       <Button className="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">
         Zobrazit produkty
       </Button>
+      </Link>
     </motion.div>
   </DropdownMenuContent>
 </DropdownMenu>

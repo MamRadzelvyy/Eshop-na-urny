@@ -8,27 +8,75 @@ import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 
 const products = [
-  { id: 1, name: "Kovová urna Ariela", image: "../../src/assets/images/Slider/Kovová urna Ariela.png", link: "/urny" },
-  { id: 2, name: "Ekologická urna Růže", image: "../../src/assets/images/Slider/Ekologická urna Classic Růže.png", link: "/urny" },
-  { id: 3, name: "Keramická urna Emilia", image: "../../src/assets/images/Slider/Keramická urna Emilia.png", link: "/urny" },
-  { id: 4, name: "Ekologická urna Carrea", image: "../../src/assets/images/Slider/Ekologická urna Carrea.png", link: "/urny" },
+  {
+    id: 1,
+    name: "Kovová urna Ariela",
+    image: "../../src/assets/images/Slider/Kovová urna Ariela.png",
+    link: "/urny",
+  },
+  {
+    id: 2,
+    name: "Ekologická urna Růže",
+    image: "../../src/assets/images/Slider/Ekologická urna Classic Růže.png",
+    link: "/urny",
+  },
+  {
+    id: 3,
+    name: "Keramická urna Emilia",
+    image: "../../src/assets/images/Slider/Keramická urna Emilia.png",
+    link: "/urny",
+  },
+  {
+    id: 4,
+    name: "Ekologická urna Carrea",
+    image: "../../src/assets/images/Slider/Ekologická urna Carrea.png",
+    link: "/urny",
+  },
 ];
 
 const categories = [
-  { name: "Ekologické urny", image: "../../src/assets/images/MainPage/ekologicka-urna.png", link: "/ekologicke-urny" },
-  { name: "Kovové urny", image: "../../src/assets/images/MainPage/kovova-urna.png", link: "/kovove-urny" },
-  { name: "Keramické urny", image: "../../src/assets/images/MainPage/keramicka urna.png", link: "/keramicke-urny" },
-  { name: "Kamenné urny", image: "../../src/assets/images/MainPage/kamenna-urna.png", link: "/kamenne-urny" },
-  { name: "Betonové urny", image: "../../src/assets/images/MainPage/sklenena-urna.png", link: "/betonove-urny" },
-  { name: "Dřevěné urny", image: "../../src/assets/images/MainPage/drevenna-urna.png", link: "/drevene-urny" },
+  {
+    name: "Ekologické urny",
+    image: "../../src/assets/images/MainPage/ekologicka-urna.png",
+    link: "/ekologicke-urny",
+  },
+  {
+    name: "Kovové urny",
+    image: "../../src/assets/images/MainPage/kovova-urna.png",
+    link: "/kovove-urny",
+  },
+  {
+    name: "Keramické urny",
+    image: "../../src/assets/images/MainPage/keramicka urna.png",
+    link: "/keramicke-urny",
+  },
+  {
+    name: "Kamenné urny",
+    image: "../../src/assets/images/MainPage/kamenna-urna.png",
+    link: "/kamenne-urny",
+  },
+  {
+    name: "Betonové urny",
+    image: "../../src/assets/images/MainPage/sklenena-urna.png",
+    link: "/betonove-urny",
+  },
+  {
+    name: "Dřevěné urny",
+    image: "../../src/assets/images/MainPage/drevenna-urna.png",
+    link: "/drevene-urny",
+  },
 ];
 
 export default function MainPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imageList, setImageList] = useState("");
 
   useEffect(() => {
+    setImageList(products.map((value) => value));
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex === products.length - 1 ? 0 : prevIndex + 1));
+      setCurrentIndex((prevIndex) =>
+        prevIndex === products.length - 1 ? 0 : prevIndex + 1
+      );
     }, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -47,6 +95,9 @@ export default function MainPage() {
 
   return (
     <>
+      {imageList && imageList.map((value, index) => (
+        <img src={value.image} alt="" key={index} className="h-0" />
+      ))}
       <Header />
       <div className="container mx-auto p-4 max-w-4xl">
         <div className="relative bg-gray-100 p-8 rounded-xl flex flex-col items-center gap-6 shadow-lg">
@@ -59,10 +110,14 @@ export default function MainPage() {
             className="flex flex-col md:flex-row items-center gap-6"
           >
             <div className="flex-1 text-center md:text-left">
-              <h2 className="text-3xl font-bold">{products[currentIndex].name}</h2>
+              <h2 className="text-3xl font-bold">
+                {products[currentIndex].name}
+              </h2>
               <p className="text-gray-600">Na výběr z několika variant</p>
               <Link to={products[currentIndex].link}>
-                <Button className="mt-4 bg-gray-700 hover:bg-gray-800">Zobrazit více</Button>
+                <Button className="mt-4 bg-gray-700 hover:bg-gray-800">
+                  Zobrazit více
+                </Button>
               </Link>
             </div>
             <motion.img
@@ -93,11 +148,20 @@ export default function MainPage() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-4">
           {categories.map((category, index) => (
             <Link key={index} to={category.link}>
-              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
                 <Card className="flex flex-col items-center p-4">
                   <CardContent className="text-center">
-                    <img src={category.image} alt={category.name} className="w-full h-20 md:h-24 object-contain rounded-lg mb-2" />
-                    <p className="font-medium text-sm md:text-base">{category.name}</p>
+                    <img
+                      src={category.image}
+                      alt={category.name}
+                      className="w-full h-20 md:h-24 object-contain rounded-lg mb-2"
+                    />
+                    <p className="font-medium text-sm md:text-base">
+                      {category.name}
+                    </p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -106,12 +170,12 @@ export default function MainPage() {
         </div>
         <div className="text-center mt-4">
           <Link to="/urnspanel">
-          <motion.div whileHover={{ scale: 1.1 }}>
-            <Button variant="outline">Zobrazit více</Button>
+            <motion.div whileHover={{ scale: 1.1 }}>
+              <Button variant="outline">Zobrazit více</Button>
             </motion.div>
           </Link>
         </div>
-        
+
         <h3 className="text-xl font-semibold mt-8 text-center">
           Nejprodávanější
         </h3>
@@ -128,8 +192,6 @@ export default function MainPage() {
             </Card>
           ))}
         </div>
-
-        
       </div>
       <Footer />
     </>

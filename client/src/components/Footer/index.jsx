@@ -12,34 +12,19 @@ export default function Footer() {
           </h3>
           <ul className="space-y-2 text-gray-600">
             <li>
-              <Link to="#">Doba dodání zboží</Link>
+              <Link to="/doba-dodani-zbozi">Doba dodání zboží</Link>
             </li>
             <li>
-              <Link to="#">Možnosti doručení</Link>
+              <Link to="/moznosti-doruceni">Možnosti doručení</Link>
             </li>
             <li>
-              <Link to="#">Možnosti platby</Link>
+              <Link to="/moznosti-platby">Možnosti platby</Link>
             </li>
             <li>
-              <Link to="#">Jak správně vybrat urnu</Link>
+              <Link to="/caste-dotazy">Časté dotazy</Link>
             </li>
             <li>
-              <Link to="#">Časté dotazy</Link>
-            </li>
-            <li>
-              <Link to="#">Vrácení a reklamace</Link>
-            </li>
-            <li>
-              <Link to="#">Ochrana osobních údajů</Link>
-            </li>
-            <li>
-              <Link to="#">Dodatek ke zpracování dat</Link>
-            </li>
-            <li>
-              <Link to="#">Obchodní podmínky</Link>
-            </li>
-            <li>
-              <Link to="#">Dokumenty ke stažení</Link>
+              <Link to="/vraceni-a-reklamace">Vrácení a reklamace</Link>
             </li>
           </ul>
         </div>
@@ -56,36 +41,33 @@ export default function Footer() {
               <Link to="/contact">Kontakty</Link>
             </li>
             <li>
-              <Link to="#">Poradna</Link>
+              <Link to="/blog">Blog</Link>
             </li>
             <li>
-              <Link to="#">Poptávka</Link>
+              <Link to="/poptavka">Poptávka</Link>
             </li>
             <li>
-              <Link to="#">Výdejny e-shopu</Link>
-            </li>
-            <li>
-              <Link to="#">Udržitelnost ekologických uren</Link>
+              <Link to="/vydejny-eshop">Výdejny e-shopu</Link>
             </li>
           </ul>
         </div>
 
         <div>
           <h3 className="text-lg font-semibold text-slate-700 mb-3">  
-            Vše k partnerům
+            Právní informace
           </h3>
           <ul className="space-y-2 text-gray-600">
-            <li>
-              <Link to="#">Velkoobchod</Link>
+          <li>
+              <Link to="/ochrana-osobnich-udaju">Ochrana osobních údajů</Link>
             </li>
             <li>
-              <Link to="#">Katalogy</Link>
+              <Link to="/dodatek-ke-zpracovani-dat">Dodatek ke zpracování dat</Link>
             </li>
             <li>
-              <Link to="#">Letáky</Link>
+              <Link to="/obchodni-podminky">Obchodní podmínky</Link>
             </li>
             <li>
-              <Link to="#">Registrace</Link>
+              <Link to="/dokumenty-ke-stazeni">Dokumenty ke stažení</Link>
             </li>
           </ul>
         </div>
@@ -96,12 +78,6 @@ export default function Footer() {
             title="Rozmanitý sortiment"
           >
             V naší nabídce najdete širokou škálu unikátních modelů.
-          </Benefit>
-          <Benefit
-            icon={<Palette size={24} className=" text-slate-700" />}
-            title="Moderní a inovativní design"
-          >
-            Pravidelně přinášíme nejnovější trendy v oblasti pohřebnictví.
           </Benefit>
           <Benefit
             icon={<Award size={24} className=" text-slate-700" />}

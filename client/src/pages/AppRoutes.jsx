@@ -19,6 +19,30 @@ import BlogView from "./Blog/BlogView";
 import BlogAdmin from "./AdminPanel/Blog";
 import BlogUpdateForm from "./AdminPanel/BlogUpdateForm";
 import BlogCreateForm from "./AdminPanel/BlogCreateForm";
+import Blog1 from "./Blog/Blog1";
+import Blog2 from "./Blog/Blog2";
+import Blog3 from "./Blog/Blog3";
+import Blog4 from "./Blog/Blog4";
+import Blog5 from "./Blog/Blog5";
+import Blog6 from "./Blog/Blog6";
+import BetonoveUrny from "./UrnsPanel/BetonoveUrny";
+import DrevenaUrny from "./UrnsPanel/DrevenaUrny";
+import EkologickeUrny from "./UrnsPanel/EkologickeUrny";
+import KameneUrny from "./UrnsPanel/KameneUrny";
+import KeramickeUrny from "./UrnsPanel/KeramickeUrny";
+import KovoveUrny from "./UrnsPanel/KovoveUrny";
+import Cart from "./Cart/Cart";
+import CasteDotazy from "./FooterPanely/CasteDotazy";
+import DobaDodaniZbozi from "./FooterPanely/DobaDodaniZbozi";
+import DodatekKeZpracovaniDat from "./FooterPanely/DodatekKeZpracovaniDat";
+import DokumentyKeStazeni from "./FooterPanely/DokumentyKeStazeni";
+import MoznostiPlatby from "./FooterPanely/MoznostiPlatby";
+import MoznostiDoruceni from "./FooterPanely/MoznostiDoruceni";
+import ObchodniPodminky from "./FooterPanely/ObchodniPodminky";
+import OchranaOsobnichUdaju from "./FooterPanely/OchranaOsobnichUdaju";
+import Poptavka from "./FooterPanely/Poptavka";
+import VraceniAReklamace from "./FooterPanely/VraceniAReklamace";
+import VydejnyEshop from "./FooterPanely/VydejnyEshop";
 
 export default function AppRoutes() {
   return (
@@ -44,6 +68,7 @@ export default function AppRoutes() {
           {/*Autentizace*/}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/cart" element={<Cart />} />
 
           {/*Header Panely*/}
           <Route path="/urnspanel" element={<UrnsPanel />} />
@@ -55,8 +80,35 @@ export default function AppRoutes() {
           <Route path="/contact" element={<Contact />} />
 
           {/*Blog Panely*/}
-          
+          <Route path="/pohreb-a-jeho-narizeni" element={<Blog1 />} />
+          <Route path="/vyber-urny-a-pece" element={<Blog2 />} />
+          <Route path="/umrti-zvirete" element={<Blog3 />} />
+          <Route path="/kremace-a-zpusoby-pohrbu" element={<Blog4 />} />
+          <Route path="/udalosti-a-zajimavosti" element={<Blog5 />} />
+          <Route path="/umrti-a-pravni-zalezitosti" element={<Blog6 />} />
+
           {/*Footer Panely*/}
+          <Route path="/caste-dotazy" element={<CasteDotazy />} />
+          <Route path="/doba-dodani-zbozi" element={<DobaDodaniZbozi />} />
+          <Route path="/dodatek-ke-zpracovani-dat" element={<DodatekKeZpracovaniDat />} />
+          <Route path="/dokumenty-ke-stazeni" element={<DokumentyKeStazeni/>} />
+          <Route path="/moznosti-platby" element={<MoznostiPlatby />} />
+          <Route path="/moznosti-doruceni" element={<MoznostiDoruceni />} />
+          <Route path="/obchodni-podminky" element={<ObchodniPodminky/>} />
+          <Route path="/ochrana-osobnich-udaju" element={<OchranaOsobnichUdaju/>} />
+          <Route path="/poptavka" element={<Poptavka/>} />
+          <Route path="/vraceni-a-reklamace" element={<VraceniAReklamace />} />
+          <Route path="/vydejny-eshop" element={<VydejnyEshop />} />
+
+          {/*Urny Panely*/}
+          <Route path="/betonove-urny" element={<BetonoveUrny />} />
+          <Route path="/drevene-urny" element={<DrevenaUrny />} />
+          <Route path="/ekologicke-urny" element={<EkologickeUrny />} />
+          <Route path="/kamenne-urny" element={<KameneUrny />} />
+          <Route path="/keramicke-urny" element={<KeramickeUrny />} />
+          <Route path="/kovove-urny" element={<KovoveUrny />} />
+
+          {/*Zvířecí Urny Panely*/}
 
 
         </Routes>
