@@ -15,6 +15,7 @@ var indexRouter = require('./routes/index');
 var urnsRouter = require('./routes/urns');
 var formRouter = require('./routes/form');
 var blogRouter = require("./routes/blog")
+var poptavkaRouter = require("./routes/poptavka")
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use('/', indexRouter);
 app.use('/urns', urnsRouter);
 app.use('/form', formRouter);
 app.use('/blog', blogRouter);
+app.use('/poptavka', poptavkaRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

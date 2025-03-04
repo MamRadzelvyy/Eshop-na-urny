@@ -43,6 +43,10 @@ import OchranaOsobnichUdaju from "./FooterPanely/OchranaOsobnichUdaju";
 import Poptavka from "./FooterPanely/Poptavka";
 import VraceniAReklamace from "./FooterPanely/VraceniAReklamace";
 import VydejnyEshop from "./FooterPanely/VydejnyEshop";
+import MaleZvireciUrny from "./AnimalsUrns/MaleZvireciUrny";
+import StredniZvireciUrny from "./AnimalsUrns/StredniZvireciUrny";
+import VelkeZvireciUrny from "./AnimalsUrns/VelkeZvireciUrny";
+import PoptavkaAdmin from "./AdminPanel/PoptavkaAdmin";
 
 export default function AppRoutes() {
   return (
@@ -64,6 +68,7 @@ export default function AppRoutes() {
           <Route path="/blogadmin" element={<BlogAdmin />} />
           <Route path="/update-blog/:id" element={<BlogUpdateForm />} />
           <Route path="/create-blog/" element={<BlogCreateForm />} />
+          <Route path="/poptavkaadmin/" element={<PoptavkaAdmin />} />
 
           {/*Autentizace*/}
           <Route path="/login" element={<Login />} />
@@ -109,7 +114,9 @@ export default function AppRoutes() {
           <Route path="/kovove-urny" element={<KovoveUrny />} />
 
           {/*Zvířecí Urny Panely*/}
-
+          <Route path="/male-zvireci-urny" element={<MaleZvireciUrny />} />
+          <Route path="/stredni-zvireci-urny" element={<StredniZvireciUrny />} />
+          <Route path="/velke-zvireci-urny" element={<VelkeZvireciUrny />} />
 
         </Routes>
       </BrowserRouter>

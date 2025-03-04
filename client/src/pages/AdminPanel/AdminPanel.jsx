@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { PackageOpen, Cylinder } from "lucide-react";
 import classNames from "classnames";
-import { ArrowDown, BookOpen, Pilcrow } from "lucide-react";
+import { ArrowDown, BookOpen, Pilcrow, Rows3  } from "lucide-react";
 
 export default function AdminPanel() {
   return (
@@ -32,10 +32,19 @@ export default function AdminPanel() {
               Form
             </Button>
           </Link>
+
+
           <Link to={"/blogadmin"} className="flex items-center">
             <Button className="text-lg py-4 px-6 bg-green-500 hover:bg-green-400">
               <Pilcrow className="mr-2" />
               Blog
+            </Button>
+          </Link>
+
+          <Link to={"/poptavkaadmin"} className="flex items-center">
+            <Button className="text-lg py-4 px-6 bg-orange-500 hover:bg-orange-400">
+              <Rows3 className="mr-2" />
+              Poptávky
             </Button>
           </Link>
 
@@ -45,6 +54,8 @@ export default function AdminPanel() {
               Main page
             </Button>
           </Link>
+
+
         </div>
       </div>
     </>

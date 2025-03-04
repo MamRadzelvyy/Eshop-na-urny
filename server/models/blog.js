@@ -7,7 +7,7 @@ const BlogSchema = new mongoose.Schema({
   content: { type: String, required: true },
   theme: {
     type: String,
-    enum: ["pohreb", "urny"],
+    enum: ["pohreb", "urny","zvire","kremace","udalosti","umrti"],
     default: "pohreb",
   },
   createdAt: { type: Date, default: Date.now },

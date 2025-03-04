@@ -54,12 +54,21 @@ export default function VydejnyEshop() {
               <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">{location.city}</h2>
               <p className="text-gray-600 dark:text-gray-300 mt-2">{location.address}</p>
               <p className="text-gray-600 dark:text-gray-300 mt-2">{location.description}</p>
+
+              <motion.div
+initial={{ opacity: 0, scale: 0.9 }}
+animate={{ opacity: 1, scale: 1 }}
+transition={{ type: "spring", stiffness: 200 }}
+className="rounded-xl overflow-hidden shadow-xl"
+>
               <iframe 
                 className="w-full h-56 md:h-full rounded-xl mt-4"
                 src={location.mapEmbed}
                 allowFullScreen
                 loading="lazy"
               ></iframe>
+</motion.div>
+
             </CardContent>
           </Card>
         ))}

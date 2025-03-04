@@ -3,8 +3,28 @@ import Header from "@/components/Header";
 import { Card, CardContent } from "@/components/ui/card";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { createPoptavka } from "@/models/Poptavka";
 
 export default function Poptavka() {
+   const [poptavkaData, setPoptavkaData] = useState({ name: "", email: "", telnumber:"", message: "" });
+    const [status, setStatus] = useState("");
+  
+    const handleChange = (e) => {
+      setPoptavkaData({ ...poptavkaData, [e.target.name]: e.target.value });
+    };
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        await createPoptavka(poptavkaData);
+        console.log(poptavkaData)
+        setStatus("Zpráva byla úspěšně odeslána!");
+        setPoptavkaData({ name: "", email: "", telnumber:"", message: "" });
+      } catch (error) {
+        setStatus("Odeslání se nezdařilo. Zkuste to znovu.");
+      }
+    };
   return (
     <>
       <Header />
@@ -27,6 +47,7 @@ export default function Poptavka() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
+              onSubmit={handleSubmit} 
               className="text-lg mb-4 text-gray-600 dark:text-gray-300"
             >
               Máte specifické požadavky na produkt, který není v naší standardní nabídce? Rádi vám pomůžeme! Vyplňte níže uvedený formulář a my se vám co nejdříve ozveme s možnostmi řešení na míru.
@@ -34,27 +55,29 @@ export default function Poptavka() {
             <form className="space-y-4">
               <div>
                 <label className="block text-gray-700 dark:text-gray-300 mb-1">Jméno a příjmení</label>
-                <input type="text" className="w-full p-2 border rounded-md" placeholder="Zadejte vaše jméno" required />
+                <input type="text" className="w-full p-2 border rounded-md" name="name" onChange={handleChange} placeholder="Zadejte vaše jméno" required />
               </div>
               <div>
                 <label className="block text-gray-700 dark:text-gray-300 mb-1">E-mail</label>
-                <input type="email" className="w-full p-2 border rounded-md" placeholder="Zadejte váš e-mail" required />
+                <input type="email" className="w-full p-2 border rounded-md" name="email" onChange={handleChange} placeholder="Zadejte váš e-mail" required />
               </div>
               <div>
                 <label className="block text-gray-700 dark:text-gray-300 mb-1">Telefon</label>
-                <input type="tel" className="w-full p-2 border rounded-md" placeholder="Zadejte váš telefon" required />
+                <input type="tel" className="w-full p-2 border rounded-md" name="telnumber" onChange={handleChange} placeholder="Zadejte váš telefon" required />
               </div>
               <div>
                 <label className="block text-gray-700 dark:text-gray-300 mb-1">Detail poptávky</label>
-                <textarea className="w-full p-2 border rounded-md" rows="4" placeholder="Popište váš požadavek..." required></textarea>
+                <textarea className="w-full p-2 border rounded-md" rows="4" name="message" onChange={handleChange} placeholder="Popište váš požadavek..." required></textarea>
               </div>
               <motion.button 
                 type="submit" 
+                onClick={handleSubmit}
                 className="w-full text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800" 
                 whileHover={{ scale: 1.05 }}
               >
                 Odeslat poptávku
               </motion.button>
+              {status && <p className="mt-4 text-center text-green-600 dark:text-green-400 font-medium">{status}</p>}
             </form>
           </CardContent>
         </Card>

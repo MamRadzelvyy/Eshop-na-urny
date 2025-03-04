@@ -7,17 +7,17 @@ import { Link } from "react-router-dom";
 const categories = [
   {
     name: "Zvířecí urny S",
-    image: "../../src/assets/images/AnimalUrns/male-zvireci-urna.png",
+    image: "../../src/assets/images/Zvířecí Urny/UrnaS.png",
     link: "/male-zvireci-urny",
   },
   {
     name: "Zvířecí urny M",
-    image: "../../src/assets/images/AnimalUrns/stredni-zvireci-urna.png",
+    image: "../../src/assets/images/Zvířecí Urny/UrnaM.png",
     link: "/stredni-zvireci-urny",
   },
   {
     name: "Zvířecí urny L",
-    image: "../../src/assets/images/AnimalUrns/velke-zvireci-urna.png",
+    image: "../../src/assets/images/Zvířecí Urny/UrnaL.png",
     link: "/velke-zvireci-urny",
   },
 ];
