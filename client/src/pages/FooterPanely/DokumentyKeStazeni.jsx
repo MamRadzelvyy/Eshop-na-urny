@@ -6,14 +6,14 @@ import { Download } from "lucide-react";
 
 export default function DokumentyKeStazeni() {
   const documents = [
-    { name: "Obchodní podmínky", link: "/docs/obchodni-podminky.pdf" },
-    { name: "Reklamační řád", link: "/docs/reklamacni-rad.pdf" },
-    { name: "Ochrana osobních údajů", link: "/docs/ochrana-osobnich-udaju.pdf" },
-    { name: "Formulář pro odstoupení od smlouvy", link: "/docs/odstoupeni-od-smlouvy.pdf" },
-    { name: "Dodací podmínky", link: "/docs/dodaci-podminky.pdf" },
-    { name: "Návod k údržbě výrobků", link: "/docs/navod-k-udrzbe.pdf" },
-    { name: "Ceník dopravy a služeb", link: "/docs/cenik-dopravy.pdf" },
-    { name: "Záruka a podmínky servisu", link: "/docs/zaruka-servis.pdf" }
+    { name: "Obchodní podmínky", link: "../../src/assets/documents/cena-dopravy.pdf" },
+    { name: "Reklamační řád", link: "../../src/assets/documents/reklamaci-rad.pdf" },
+    { name: "Ochrana osobních údajů", link: "../../src/assets/documents/ochrana-osobnich-udaju.pdf" },
+    { name: "Formulář pro odstoupení od smlouvy", link: "../../src/assets/documents/pouceni-o-pravu-na-odstoupeni-od-smlouvy.pdf" },
+    { name: "Dodací podmínky", link: "../../src/assets/documents/dodaci-podminky.pdf" },
+    { name: "Návod k údržbě výrobků", link: "../../src/assets/documents/navod-k-udrzbe.pdf" },
+    { name: "Ceník dopravy a služeb", link: "../../src/assets/documents/cena-dopravy.pdf" },
+    { name: "Záruka a podmínky servisu", link: "../../src/assets/documents/zaruka-a-podminky-servisu.pdf" }
   ];
 
   return (
