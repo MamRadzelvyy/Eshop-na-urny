@@ -1,3 +1,4 @@
+require("dotenv").config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -17,6 +18,11 @@ var formRouter = require('./routes/form');
 var blogRouter = require("./routes/blog")
 var poptavkaRouter = require("./routes/poptavka")
 
+const adminRouter = require("./routes/admin");
+var adminLoginRouter = require("./routes/adminLogin");
+;
+var authRouter = require("./routes/auth");
+
 var app = express();
 
 // nastavení view engine
@@ -35,7 +41,8 @@ app.use('/urns', urnsRouter);
 app.use('/form', formRouter);
 app.use('/blog', blogRouter);
 app.use('/poptavka', poptavkaRouter);
-
+app.use("/auth", authRouter);app.use("/adminLogin", adminLoginRouter)
+app.use("/admin", adminRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
