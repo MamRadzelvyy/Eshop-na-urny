@@ -4,7 +4,14 @@ exports.submitForm = async (req, res) => {
   try {
     const newForm = new Form(req.body);
     await newForm.save();
-    res.status(201).json({ message: "Formulář byl úspěšně odeslán!" });
+
+    // Získáme Socket.io objekt ze serveru
+    const io = req.app.get("socketio");
+
+    // Pošleme událost "newForm" všem připojeným klientům (admin panel)
+    io.emit("newForm", newForm);
+
+    res.status(201).json({ message: "Formulář byl úspěšně odeslán!", form: newForm });
   } catch (error) {
     res.status(500).json({ error: "Chyba při odesílání formuláře" });
   }
@@ -23,9 +30,7 @@ exports.deleteForm = async (req, res) => {
   try {
     const result = await Form.findByIdAndDelete(req.params.id);
     if (result) {
-      return res.status(200).send({
-        msg: "Form deleted",
-      });
+      return res.status(200).send({ msg: "Formulář byl úspěšně smazán" });
     }
     res.status(500).send({ msg: "Něco se pokazilo" });
   } catch (error) {

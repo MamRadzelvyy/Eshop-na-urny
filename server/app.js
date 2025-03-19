@@ -6,35 +6,60 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require("cors");
 const mongoose = require('mongoose');
+const http = require("http"); // Přidáváme HTTP server pro Socket.io
+const socketIo = require("socket.io");
+
 const MY_KEY = require("./mongodb.js");
+
 mongoose
-.connect(MY_KEY)
-.then(() => console.log("Databáze připojena ✅😊"))
-.catch((err) => console.log(err));
+  .connect(MY_KEY)
+  .then(() => console.log("✅ Databáze připojena"))
+  .catch((err) => console.log(err));
 
 var indexRouter = require('./routes/index');
 var urnsRouter = require('./routes/urns');
 var formRouter = require('./routes/form');
-var blogRouter = require("./routes/blog")
-var poptavkaRouter = require("./routes/poptavka")
-
+var blogRouter = require("./routes/blog");
+var poptavkaRouter = require("./routes/poptavka");
 const adminRouter = require("./routes/admin");
 var adminLoginRouter = require("./routes/adminLogin");
 var authRouter = require("./routes/auth");
 
 var app = express();
+const server = http.createServer(app); // Vytvoření HTTP serveru pro Socket.io
+const io = socketIo(server, {
+  cors: {
+    origin: ["http://localhost:3000", "http://localhost:5173"], // Povolit oba frontend servery
+    methods: ["GET", "POST", "DELETE"],
+    credentials: true
+  }
+});
 
-// nastavení view engine
+// Nastavení view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// Middleware
 app.use(logger('dev'));
-app.use(cors());
+app.use(cors({ origin: ["http://localhost:3000", "http://localhost:5173"], credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Socket.io připojení
+io.on("connection", (socket) => {
+  console.log(`⚡ Nové připojení: ${socket.id}`);
+
+  socket.on("disconnect", () => {
+    console.log("❌ Uživatel odpojen");
+  });
+});
+
+// Uložíme Socket.io do aplikace, aby byl dostupný v controllerech
+app.set("socketio", io);
+
+// Přidání routerů
 app.use('/', indexRouter);
 app.use('/urns', urnsRouter);
 app.use('/form', formRouter);
@@ -43,20 +68,20 @@ app.use('/poptavka', poptavkaRouter);
 app.use("/auth", authRouter);
 app.use("/admin", adminLoginRouter);
 app.use("/admin", adminRouter);
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+// Chytání 404 chyb
+app.use((req, res, next) => next(createError(404)));
+
+// Error handler
+app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
+
+// Spuštění serveru
+const PORT = process.env.PORT || 4000;
+server.listen(PORT, () => console.log(`🚀 Server běží na portu ${PORT}`));
 
 module.exports = app;
