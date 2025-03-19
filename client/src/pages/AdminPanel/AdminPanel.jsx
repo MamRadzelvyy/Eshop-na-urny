@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { PackageOpen, Cylinder } from "lucide-react";
+import { AuthContext } from "../../../src/context/AuthContext"; // Ověř správnou cestu
+import { PackageOpen, Cylinder, ArrowDown, BookOpen, Pilcrow, Rows3 } from "lucide-react";
 import classNames from "classnames";
-import { ArrowDown, BookOpen, Pilcrow, Rows3 } from "lucide-react";
 
 export default function AdminPanel() {
+  const { isAuthenticated, login, logout } = useContext(AuthContext);
   const [enteredPassword, setEnteredPassword] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const handleLogin = async () => {
     try {
@@ -19,8 +19,8 @@ export default function AdminPanel() {
 
       const data = await response.json();
 
-      if (data.success) {
-        setIsAuthenticated(true);
+      if (data.success && data.token) {
+        login(data.token); // Uloží token do contextu
       } else {
         alert("Nesprávné admin heslo!");
       }
@@ -84,6 +84,7 @@ export default function AdminPanel() {
             Main page
           </Button>
         </Link>
+        <Button onClick={logout} className="bg-red-500 hover:bg-red-400 mt-4">Odhlásit se</Button>
       </div>
     </div>
   );

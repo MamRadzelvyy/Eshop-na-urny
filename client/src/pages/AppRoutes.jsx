@@ -48,9 +48,11 @@ import StredniZvireciUrny from "./AnimalsUrns/StredniZvireciUrny";
 import VelkeZvireciUrny from "./AnimalsUrns/VelkeZvireciUrny";
 import PoptavkaAdmin from "./AdminPanel/PoptavkaAdmin";
 
+import AuthProvider from "../../src/context/AuthContext";
 export default function AppRoutes() {
   return (
     <>
+    <AuthProvider>
       <BrowserRouter>
         <Routes>
 
@@ -120,6 +122,7 @@ export default function AppRoutes() {
 
         </Routes>
       </BrowserRouter>
+      </AuthProvider>
     </>
   );
 }

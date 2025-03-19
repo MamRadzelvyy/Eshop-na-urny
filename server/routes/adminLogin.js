@@ -16,7 +16,7 @@ router.post("/", (req, res) => {
 
     if (password === ADMIN_SECRET) {
         // Vytvoření JWT tokenu s expirací 5 minut
-        const token = jwt.sign({ role: "admin" }, JWT_SECRET, { expiresIn: "1m" });
+        const token = jwt.sign({ role: "admin" }, JWT_SECRET, { expiresIn: "5m" });
         return res.json({ success: true, token });
     } else {
         return res.status(401).json({ success: false, message: "Špatné heslo" });
@@ -46,7 +46,7 @@ router.get("/protected", verifyToken, (req, res) => {
     res.json({ success: true, message: "Máte přístup!", user: req.user });
 });
 
-// Endpoint pro odhlášení (na frontendu stačí smazat token)
+// Endpoint pro odhlášení (smazání tokenu na frontend)
 router.post("/logout", (req, res) => {
     return res.json({ success: true, message: "Úspěšně odhlášen" });
 });
