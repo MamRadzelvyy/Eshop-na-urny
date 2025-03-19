@@ -40,9 +40,9 @@ app.use('/urns', urnsRouter);
 app.use('/form', formRouter);
 app.use('/blog', blogRouter);
 app.use('/poptavka', poptavkaRouter);
-app.use("/adminLogin", adminLoginRouter)
 app.use("/auth", authRouter);
-app.use("/admin", adminLoginRouter); // Opraveno!
+app.use("/admin", adminLoginRouter);
+app.use("/admin", adminRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
