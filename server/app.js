@@ -20,7 +20,6 @@ var poptavkaRouter = require("./routes/poptavka")
 
 const adminRouter = require("./routes/admin");
 var adminLoginRouter = require("./routes/adminLogin");
-;
 var authRouter = require("./routes/auth");
 
 var app = express();
@@ -41,8 +40,9 @@ app.use('/urns', urnsRouter);
 app.use('/form', formRouter);
 app.use('/blog', blogRouter);
 app.use('/poptavka', poptavkaRouter);
-app.use("/auth", authRouter);app.use("/adminLogin", adminLoginRouter)
-app.use("/admin", adminRouter);
+app.use("/adminLogin", adminLoginRouter)
+app.use("/auth", authRouter);
+app.use("/admin", adminLoginRouter); // Opraveno!
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
