@@ -52,8 +52,8 @@ import AuthProvider from "../../src/context/AuthContext";
 export default function AppRoutes() {
   return (
     <>
-    <AuthProvider>
-      <BrowserRouter>
+
+      <BrowserRouter>    <AuthProvider>
         <Routes>
 
           {/*Home*/}
@@ -120,9 +120,9 @@ export default function AppRoutes() {
           <Route path="/stredni-zvireci-urny" element={<StredniZvireciUrny />} />
           <Route path="/velke-zvireci-urny" element={<VelkeZvireciUrny />} />
 
-        </Routes>
+        </Routes>   </AuthProvider>
       </BrowserRouter>
-      </AuthProvider>
+   
     </>
   );
 }

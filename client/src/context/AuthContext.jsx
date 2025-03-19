@@ -1,17 +1,17 @@
 import React, { createContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Přidáme pro přesměrování
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // Použití hooku pro přesměrování
 
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem("adminToken");
       if (token) {
-        console.log("Token nalezen:", token); // Debug
-
         try {
           const response = await fetch("http://localhost:3000/admin/protected", {
             headers: { Authorization: `Bearer ${token}` },
@@ -22,26 +22,24 @@ export const AuthProvider = ({ children }) => {
           }
 
           const data = await response.json();
-          console.log("Odpověď serveru:", data); // Debug
-
           if (data.success) {
             setIsAuthenticated(true);
           } else {
-            localStorage.removeItem("adminToken");
-            setIsAuthenticated(false);
+            logout(); // 🔥 Automaticky odhlásíme uživatele
           }
         } catch (error) {
           console.error("Chyba při ověřování tokenu:", error);
-          localStorage.removeItem("adminToken");
-          setIsAuthenticated(false);
+          logout(); // 🔥 Když token není platný, odhlásíme uživatele
         }
-      } else {
-        console.log("Token nenalezen");
       }
       setLoading(false);
     };
 
     checkAuth();
+
+    // Automatické ověřování každých 10 sekund
+    const interval = setInterval(checkAuth, 10000);
+    return () => clearInterval(interval);
   }, []);
 
   const login = (token) => {
@@ -52,6 +50,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("adminToken");
     setIsAuthenticated(false);
+    navigate("/adminpanel"); // 🔥 Přesměrujeme uživatele na hlavní stránku
   };
 
   if (loading) {

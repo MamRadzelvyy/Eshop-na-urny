@@ -16,7 +16,7 @@ router.post("/", (req, res) => {
 
     if (password === ADMIN_SECRET) {
         // Vytvoření JWT tokenu s expirací 5 minut
-        const token = jwt.sign({ role: "admin" }, JWT_SECRET, { expiresIn: "1m" });
+        const token = jwt.sign({ role: "admin" }, JWT_SECRET, { expiresIn: "15m" });
         return res.json({ success: true, token });
     } else {
         return res.status(401).json({ success: false, message: "Špatné heslo" });

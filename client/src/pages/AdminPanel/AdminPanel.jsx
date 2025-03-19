@@ -21,6 +21,7 @@ export default function AdminPanel() {
 
       if (data.success && data.token) {
         login(data.token); // Uloží token do contextu
+        setEnteredPassword("");
       } else {
         alert("Nesprávné admin heslo!");
       }
@@ -84,7 +85,15 @@ export default function AdminPanel() {
             Main page
           </Button>
         </Link>
-        <Button onClick={logout} className="bg-red-500 hover:bg-red-400 mt-4">Odhlásit se</Button>
+        <Button
+        onClick={() => {
+          setEnteredPassword("");
+          logout();
+        }}
+        className="bg-red-500 hover:bg-red-400 mt-4"
+      >
+        Odhlásit se
+      </Button>
       </div>
     </div>
   );
