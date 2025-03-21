@@ -8,31 +8,30 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  // Funkce pro odhlášení
+  const logout = () => {
+    localStorage.removeItem("adminToken");
+    setIsAuthenticated(false);
+  };
+
+  // Ověření tokenu (běží při načtení a pak každých 10s)
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem("adminToken");
-      console.log("🔍 Token v localStorage při načtení:", token); // ✅ Debug
 
       if (token) {
         try {
           const response = await fetch("http://localhost:3000/admin/protected", {
-            headers: { Authorization: `Bearer ${token}` }, // ✅ Opraveno
+            headers: { Authorization: `Bearer ${token}` },
           });
 
-          console.log("📡 Odpověď serveru:", response.status); // ✅ Debug výpis
-
-          if (!response.ok) {
-            throw new Error(`HTTP Error: ${response.status}`); // ✅ Opraveno
-          }
+          if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
           const data = await response.json();
-          console.log("📩 Data ze serveru:", data); // ✅ Debug výpis
 
           if (data.success) {
-            console.log("✅ Token je platný! Zůstávám přihlášený.");
             setIsAuthenticated(true);
           } else {
-            console.log("❌ Token není platný, odhlašuji...");
             logout();
           }
         } catch (error) {
@@ -40,7 +39,7 @@ export const AuthProvider = ({ children }) => {
           logout();
         }
       } else {
-        console.log("❌ Token nebyl nalezen!");
+        logout();
       }
 
       setLoading(false);
@@ -48,22 +47,37 @@ export const AuthProvider = ({ children }) => {
 
     checkAuth();
 
-    // Automatické ověřování každých 10 sekund
     const interval = setInterval(checkAuth, 10000);
     return () => clearInterval(interval);
   }, []);
 
+  // Přesměrování nepřihlášeného uživatele
+  useEffect(() => {
+    if (!loading && !isAuthenticated) {
+      navigate("/adminpanel");
+    }
+  }, [isAuthenticated, loading, navigate]);
+
+  // ⚡ Realtime login/logout mezi tably
+  useEffect(() => {
+    const handleStorageChange = (event) => {
+      if (event.key === "adminToken") {
+        if (event.newValue === null) {
+          setIsAuthenticated(false); // logout
+        } else {
+          setIsAuthenticated(true); // login
+        }
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
+  // Funkce pro přihlášení
   const login = (token) => {
-    console.log("✅ Ukládám token:", token); // ✅ Debug výpis
     localStorage.setItem("adminToken", token);
     setIsAuthenticated(true);
-  };
-
-  const logout = () => {
-    console.log("🚪 Odhlášení: mažu token");
-    localStorage.removeItem("adminToken");
-    setIsAuthenticated(false);
-    navigate("/adminpanel"); 
   };
 
   if (loading) {

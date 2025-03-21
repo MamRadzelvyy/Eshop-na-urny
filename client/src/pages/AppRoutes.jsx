@@ -53,24 +53,24 @@ export default function AppRoutes() {
   return (
     <>
 
-      <BrowserRouter>    <AuthProvider>
+      <BrowserRouter>    
         <Routes>
 
           {/*Home*/}
           <Route path="/" element={<MainPage />} />
-
-          {/*Admin Panel*/}
-          <Route path="/createurn" element={<UrnCreateForm />} />
-          <Route path="/updateurn/:id" element={<UrnUpdateForm />} />
-          <Route path="/urn/:id" element={<UrnView />} />
-          <Route path="/urns" element={<UrnList />} />
-          <Route path="/createdurn/:id" element={<CreatedUrn />} />
-          <Route path="/adminpanel" element={<AdminPanel />} />
-          <Route path="/form" element={<Form />} />
-          <Route path="/blogadmin" element={<BlogAdmin />} />
-          <Route path="/update-blog/:id" element={<BlogUpdateForm />} />
-          <Route path="/create-blog/" element={<BlogCreateForm />} />
-          <Route path="/poptavkaadmin/" element={<PoptavkaAdmin />} />
+          
+          {/* Admin Panel */}
+          <Route path="/createurn" element={<AuthProvider><UrnCreateForm /></AuthProvider>} />
+          <Route path="/updateurn/:id" element={<AuthProvider><UrnUpdateForm /></AuthProvider>} />
+          <Route path="/urn/:id" element={<AuthProvider><UrnView /></AuthProvider>} />
+          <Route path="/urns" element={<AuthProvider><UrnList /></AuthProvider>} />
+          <Route path="/createdurn/:id" element={<AuthProvider><CreatedUrn /></AuthProvider>} />
+          <Route path="/adminpanel" element={<AuthProvider><AdminPanel /></AuthProvider>} />
+          <Route path="/form" element={<AuthProvider><Form /></AuthProvider>} />
+          <Route path="/blogadmin" element={<AuthProvider><BlogAdmin /></AuthProvider>} />
+          <Route path="/update-blog/:id" element={<AuthProvider><BlogUpdateForm /></AuthProvider>} />
+          <Route path="/create-blog" element={<AuthProvider><BlogCreateForm /></AuthProvider>} />
+          <Route path="/poptavkaadmin" element={<AuthProvider><PoptavkaAdmin /></AuthProvider>} />
 
           {/*Autentizace*/}
           <Route path="/login" element={<Login />} />
@@ -120,7 +120,7 @@ export default function AppRoutes() {
           <Route path="/stredni-zvireci-urny" element={<StredniZvireciUrny />} />
           <Route path="/velke-zvireci-urny" element={<VelkeZvireciUrny />} />
 
-        </Routes>   </AuthProvider>
+        </Routes>   
       </BrowserRouter>
    
     </>
