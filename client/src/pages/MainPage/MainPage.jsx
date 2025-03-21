@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import { Link } from "react-router-dom";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
+import BestSellingUrns from "@/components/BestSellingUrns";
 
 const products = [
   {
@@ -176,22 +177,7 @@ export default function MainPage() {
           </Link>
         </div>
 
-        <h3 className="text-xl font-semibold mt-8 text-center">
-          Nejprodávanější
-        </h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-          {products.map((product) => (
-            <Card key={product.id} className="p-4">
-              <CardContent className="flex flex-col items-center">
-                <PackageOpen size={48} />
-                <p className="mt-2 font-medium">{product.name}</p>
-                <Link to={product.link}>
-                  <Button className="mt-2">Detail</Button>
-                </Link>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+<BestSellingUrns/>
       </div>
       <Footer />
     </>

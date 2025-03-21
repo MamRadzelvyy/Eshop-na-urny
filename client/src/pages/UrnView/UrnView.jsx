@@ -43,68 +43,54 @@ export default function UrnView() {
     }
   };
 
-  if (isLoaded === null) {
-    return <p>Urny nenalezeny</p>;
-  }
-
-  if (!isLoaded) {
-    return <p>Urny se načítají...</p>;
-  }
+  if (isLoaded === null) return <p>Urna nenalezena</p>;
+  if (!isLoaded) return <p>Načítání...</p>;
 
   return (
-    <>
-      <div className="container mx-auto flex flex-col justify-center gap-4 grid_background min-h-screen">
-        <div className="max-w-3xl mx-auto w-full">
-          <h1 className="text-2xl font-bold">Urn view</h1>
-          <p className="font-medium block w-full">
-            ID:{" "}
-            <span className="text-gray-600 font-light float-right">{id}</span>
-          </p>
-          <p className="font-medium block w-full">
-            Name:{" "}
-            <span className="text-gray-600 font-light float-right">
-              {urn.name}
-            </span>
-          </p>
-          <p className="font-medium block w-full">
-            Legs:{" "}
-            <span className="text-gray-600 font-light float-right">
-              {urn.legs}
-            </span>
-          </p>
-          <p className="font-medium block w-full">
-            Color:{" "}
-            <span className="text-gray-600 font-light float-right">
-              {urn.color}
-            </span>
-          </p>
-          <form className="flex flex-col gap-2">
-            <Input type="text" placeholder={urn.name} onChange={handleChange} />
-            <Button
-              onClick={handleDelete}
-              className="bg-red-950 hover:bg-red-900 text-lg py-4 px-6"
-            >
-              Delete
-            </Button>
-            <div className="relative h-0">
-              {info && (
-                <p className="text-red-950 text-center absolute left-1/2 transform -translate-x-1/2">{info}</p>
-              )}
-            </div>
-          </form>
+    <div className="container mx-auto flex flex-col justify-center gap-4 grid_background min-h-screen">
+      <div className="max-w-3xl mx-auto w-full">
+        <h1 className="text-2xl font-bold mb-2">Urn detail</h1>
 
-          <div className="flex justify-between mt-0">
-            <Link to={`/updateurn/${id}`}>
-              <Button className="w-full text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
-                Update Urn
-              </Button>
-            </Link>
-            <Link to={"/adminpanel"}>
-              <Button variant="outline">Go back</Button>
-            </Link>
-          </div>
+        <div className="space-y-2 text-sm">
+          <p><strong>ID:</strong> {id}</p>
+          <p><strong>Název:</strong> {urn.name}</p>
+          <p><strong>Cena:</strong> {urn.price} Kč</p>
+          <p><strong>Barva:</strong> {urn.color}</p>
+          <p><strong>Materiál:</strong> {urn.material}</p>
+          <p><strong>Určeno pro:</strong> {urn.for}</p>
+          <p><strong>Top produkt:</strong> {urn.top || "Ne"}</p>
+          <p><strong>Popis:</strong> {urn.description}</p>
+          <p><strong>Obrázek:</strong> <a href={urn.imagePath} target="_blank" rel="noreferrer" className="text-blue-500 underline">{urn.imagePath}</a></p>
+        </div>
+
+        <form className="flex flex-col gap-2 mt-4">
+          <Input
+            type="text"
+            placeholder="Zadej přesný název pro potvrzení smazání"
+            onChange={handleChange}
+          />
+          <Button
+            onClick={handleDelete}
+            className="bg-red-950 hover:bg-red-900 text-lg py-4 px-6"
+          >
+            Delete
+          </Button>
+          {info && (
+            <p className="text-red-950 text-center">{info}</p>
+          )}
+        </form>
+
+        <div className="flex justify-between mt-6 gap-2">
+          <Link to={`/updateurn/${id}`} className="w-full">
+            <Button className="w-full text-white bg-slate-700 hover:bg-slate-800">
+              Update Urn
+            </Button>
+          </Link>
+          <Link to={"/adminpanel"} className="w-full">
+            <Button variant="outline" className="w-full">Go back</Button>
+          </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 }

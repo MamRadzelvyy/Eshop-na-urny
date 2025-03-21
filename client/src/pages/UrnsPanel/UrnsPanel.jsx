@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { getUrns } from "@/models/Urn";
 
 const categories = [
   {
@@ -39,26 +40,39 @@ const categories = [
   },
 ];
 
-const urns = [
-  { id: 1, name: "Kovová urna Ariela", image: "/images/urny/kovova-ariela.jpg", price: "2 500 Kč" },
-  { id: 2, name: "Ekologická urna Classic Růže", image: "/images/urny/classic-ruze.jpg", price: "1 800 Kč" },
-  { id: 3, name: "Keramická urna Emilia", image: "/images/urny/keramicka-emilia.jpg", price: "2 200 Kč" },
-  { id: 4, name: "Ekologická urna Carrea", image: "/images/urny/ekologicka-carrea.jpg", price: "2 000 Kč" },
-];
-
 export default function UrnsPanel() {
   const [sortBy, setSortBy] = useState("bestsellers");
+  const [urns, setUrns] = useState([]);
+
+  useEffect(() => {
+    const loadUrns = async () => {
+      const data = await getUrns();
+      if (data.status === 200) {
+        const filteredUrns = data.payload.filter(
+          (urn) => urn.for === "Lidská" && urn.material !== "test"
+        );
+        setUrns(filteredUrns);
+      }
+    };
+    loadUrns();
+  }, []);
+
+  const sortedUrns = [...urns].sort((a, b) => {
+    if (sortBy === "price_asc") return a.price - b.price;
+    if (sortBy === "price_desc") return b.price - a.price;
+    return 0;
+  });
 
   return (
     <>
       <Header />
       <div className="max-w-6xl mx-auto p-6">
         <h1 className="text-4xl font-bold text-center mb-6">Urny</h1>
-        
+
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
           {categories.map((category, index) => (
             <Link key={index} to={category.link}>
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
                 className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center text-center border"
@@ -69,7 +83,7 @@ export default function UrnsPanel() {
             </Link>
           ))}
         </div>
-        
+
         <div className="flex justify-end mb-4">
           <select
             value={sortBy}
@@ -81,26 +95,39 @@ export default function UrnsPanel() {
             <option value="price_desc">Cena: Nejvyšší</option>
           </select>
         </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {urns.map((urn) => (
-            <motion.div 
-              key={urn.id} 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Card className="shadow-lg rounded-xl overflow-hidden">
-                <img src={urn.image} alt={urn.name} className="w-full h-64 object-cover" />
-                <CardContent className="p-4 text-center">
-                  <h2 className="text-xl font-semibold">{urn.name}</h2>
-                  <p className="text-gray-600 mt-1">{urn.price}</p>
-                  <Button className="mt-3 w-full bg-gray-700 text-white">Zobrazit detail</Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+
+        {sortedUrns.length === 0 ? (
+          <p className="text-center text-gray-500">Žádné urny nesplňují vybraná kritéria.</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {sortedUrns.map((urn) => (
+              <motion.div
+                key={urn._id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Card className="shadow-lg rounded-xl overflow-hidden">
+                  <img src={urn.imagePath} alt={urn.name} className="w-full h-64 object-contain" />
+                  <CardContent className="p-4 text-center">
+                    <h2 className="text-xl font-semibold">{urn.name}</h2>
+                    <p className="text-gray-600 mt-1">
+                      {new Intl.NumberFormat("cs-CZ", {
+                        style: "currency",
+                        currency: "CZK",
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0,
+                      }).format(urn.price)}
+                    </p>
+                    <Link to={`/urny/${urn._id}`}>
+                      <Button className="mt-3 w-full bg-gray-700 text-white">Zobrazit detaily</Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
       <Footer />
     </>

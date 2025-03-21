@@ -49,6 +49,7 @@ import VelkeZvireciUrny from "./AnimalsUrns/VelkeZvireciUrny";
 import PoptavkaAdmin from "./AdminPanel/PoptavkaAdmin";
 
 import AuthProvider from "../../src/context/AuthContext";
+import ViewForUrns from "./ViewForUrns/ViewForUrns";
 export default function AppRoutes() {
   return (
     <>
@@ -114,6 +115,7 @@ export default function AppRoutes() {
           <Route path="/kamenne-urny" element={<KameneUrny />} />
           <Route path="/keramicke-urny" element={<KeramickeUrny />} />
           <Route path="/kovove-urny" element={<KovoveUrny />} />
+          <Route path="/urny/:id" element={<ViewForUrns/>} />
 
           {/*Zvířecí Urny Panely*/}
           <Route path="/male-zvireci-urny" element={<MaleZvireciUrny />} />

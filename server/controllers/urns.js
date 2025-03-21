@@ -48,8 +48,13 @@ exports.updateUrn = async (req, res) => {
   try {
     const data = {
       name: req.body.name,
-      legs: req.body.legs,
+      price: req.body.price,
       color: req.body.color,
+      imagePath: req.body.imagePath,
+      description: req.body.description,
+      for: req.body.for,
+      top: req.body.top,
+      material: req.body.material,
     };
     const result = await Urn.findByIdAndUpdate(req.params.id, data);
     if (result) {
@@ -70,8 +75,13 @@ exports.createUrn = async (req, res) => {
   try {
     const data = new Urn({
       name: req.body.name,
-      legs: req.body.legs,
+      price: req.body.price,
       color: req.body.color,
+      imagePath: req.body.imagePath,
+      description: req.body.description,
+      for: req.body.for,
+      top: req.body.top,
+      material: req.body.material,
     });
     const result = await data.save();
     if (result) {
