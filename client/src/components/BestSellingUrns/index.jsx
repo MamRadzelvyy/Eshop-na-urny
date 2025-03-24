@@ -15,6 +15,7 @@ export default function BestSellingUrns() {
       if (data.status === 200) {
         const filteredUrns = data.payload
           .filter((urn) => urn.top === "TOP") // 🔥 Bere jen ty s "TOP"
+          .filter((urn) => urn.for === "Lidská")
           .sort(() => Math.random() - 0.5) // 🔀 Náhodně zamíchá pořadí
           .slice(0, 4); // 🔥 Vybere max 4 různé urny
 
@@ -50,7 +51,7 @@ export default function BestSellingUrns() {
                   }).format(urn.price)}
                 </p>
                 <Link to={`/urny/${urn._id}`}>
-                  <Button className="mt-2  bg-gray-700 text-white">Detaily</Button>
+                  <Button className="mt-2  bg-gray-700 text-white">Ukaž!</Button>
                 </Link>
               </CardContent>
             </Card>

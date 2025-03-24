@@ -16,8 +16,8 @@ const schema = mongoose.Schema({
 
   top: {
     type: String,
-    enum: ["TOP", "test", ""],
-    default: "",
+    enum: ["TOP", "test", "normální"],
+    default: "normální",
     required: true
   },
 

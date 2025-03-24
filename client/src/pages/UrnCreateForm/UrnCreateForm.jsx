@@ -97,7 +97,7 @@ export default function UrnCreateForm() {
             defaultValue=""
             onChange={handleChange}
           >
-            <option value="">–</option>
+            <option value="normální">normální</option>
             <option value="TOP">TOP</option>
             <option value="test">test</option>
           </select>
@@ -115,9 +115,9 @@ export default function UrnCreateForm() {
             <option value="Kamenné urny">Kamenné urny</option>
             <option value="Betonové urny">Betonové urny</option>
             <option value="Dřevěné urny">Dřevěné urny</option>
-            <option value="Dřevěné urny">Zvířecí urny S</option>
-            <option value="Dřevěné urny">Zvířecí urny M</option>
-            <option value="Dřevěné urny">Zvířecí urny L</option>
+            <option value="Zvířecí urny S">Zvířecí urny S</option>
+            <option value="Zvířecí urny M">Zvířecí urny M</option>
+            <option value="Zvířecí urny L">Zvířecí urny L</option>
             <option value="test">test</option>
           </select>
 

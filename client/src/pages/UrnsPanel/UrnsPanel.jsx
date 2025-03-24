@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { getUrns } from "@/models/Urn";
+import { ShoppingCart } from "lucide-react";
 
 const categories = [
   {
@@ -110,19 +111,27 @@ export default function UrnsPanel() {
                 <Card className="shadow-lg rounded-xl overflow-hidden">
                   <img src={urn.imagePath} alt={urn.name} className="w-full h-64 object-contain" />
                   <CardContent className="p-4 text-center">
-                    <h2 className="text-xl font-semibold">{urn.name}</h2>
-                    <p className="text-gray-600 mt-1">
-                      {new Intl.NumberFormat("cs-CZ", {
-                        style: "currency",
-                        currency: "CZK",
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0,
-                      }).format(urn.price)}
-                    </p>
-                    <Link to={`/urny/${urn._id}`}>
-                      <Button className="mt-3 w-full bg-gray-700 text-white">Zobrazit detaily</Button>
-                    </Link>
-                  </CardContent>
+  <h2 className="text-xl font-semibold">{urn.name}</h2>
+  <p className="text-gray-600 mt-1">
+    {new Intl.NumberFormat("cs-CZ", {
+      style: "currency",
+      currency: "CZK",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(urn.price)}
+  </p>
+<div className="flex justify-center gap-4 mt-4">
+  <Link to={`/urny/${urn._id}`}>
+    <Button className="text-sm px-3 py-3 bg-gray-700 text-white">
+      Zobrazit detaily
+    </Button>
+  </Link>
+  <Button className="px-7 py-3 bg-green-200 text-green-900 hover:bg-green-300">
+    <ShoppingCart className="w-5 h-5" />
+  </Button>
+</div>
+</CardContent>
+
                 </Card>
               </motion.div>
             ))}

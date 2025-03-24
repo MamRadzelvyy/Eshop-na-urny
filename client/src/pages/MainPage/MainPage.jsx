@@ -13,25 +13,25 @@ const products = [
     id: 1,
     name: "Kovová urna Ariela",
     image: "../../src/assets/images/Slider/Kovová urna Ariela.png",
-    link: "/urny",
+    link: "/urny/67dd3e0c1bb57108001d5d9e",
   },
   {
     id: 2,
     name: "Ekologická urna Růže",
     image: "../../src/assets/images/Slider/Ekologická urna Classic Růže.png",
-    link: "/urny",
+    link: "/urny/67dd42ce1bb57108001d5dc2",
   },
   {
     id: 3,
     name: "Keramická urna Emilia",
     image: "../../src/assets/images/Slider/Keramická urna Emilia.png",
-    link: "/urny",
+    link: "/urny/67dd42981bb57108001d5dbe",
   },
   {
     id: 4,
     name: "Ekologická urna Carrea",
     image: "../../src/assets/images/Slider/Ekologická urna Carrea.png",
-    link: "/urny",
+    link: "/urny/67dd42091bb57108001d5dba",
   },
 ];
 

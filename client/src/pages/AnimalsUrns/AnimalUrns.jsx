@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { getUrns } from "@/models/Urn";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { ShoppingCart } from "lucide-react";
 
 const categories = [
   {
@@ -111,11 +112,16 @@ export default function AnimalUrns() {
                         maximumFractionDigits: 0,
                       }).format(urn.price)}
                     </p>
-                    <Link to={`/urny/${urn._id}`}>
-                      <Button className="mt-3 w-full bg-gray-700 text-white">
-                        Zobrazit detaily
-                      </Button>
-                    </Link>
+                    <div className="flex justify-center gap-4 mt-4">
+  <Link to={`/urny/${urn._id}`}>
+    <Button className="text-sm px-3 py-3 bg-gray-700 text-white">
+      Zobrazit detaily
+    </Button>
+  </Link>
+  <Button className="px-7 py-3 bg-green-200 text-green-900 hover:bg-green-300">
+    <ShoppingCart className="w-5 h-5" />
+  </Button>
+</div>
                   </CardContent>
                 </Card>
               </motion.div>
