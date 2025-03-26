@@ -58,6 +58,10 @@
 - Moment.js
 - Socket.io
 - Stripe
+- Toaster
+- Axios
+- Redux
+- Sonner
 
 <div align=center>
   
