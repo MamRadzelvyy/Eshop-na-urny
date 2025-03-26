@@ -7,6 +7,10 @@ import { ShoppingCart } from "lucide-react";
 import { ShoppingBasket } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFromCart } from '../../redux/cartSlice';
+import { X } from 'lucide-react';
+
 
 
 import {
@@ -24,6 +28,12 @@ export default function Header() {
   const toggleVisibility = () => {
     setIsHidden(!isHidden);
   };
+
+const dispatch = useDispatch();
+
+const cartItems = useSelector((state) => state.cart?.items || []);
+const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
     <>
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
@@ -50,34 +60,75 @@ export default function Header() {
             >
               Registrace
             </Link>
+
             <DropdownMenu>
   <DropdownMenuTrigger className="relative p-3 transition-transform hover:scale-110 focus:outline-none">
     <ShoppingCart size={22} className="text-gray-600 dark:text-gray-300 hover:text-blue-500" />
-    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
-      0
-    </span> 
+    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full select-none pointer-events-none">
+  {itemCount}
+</span>
   </DropdownMenuTrigger>
-  
+
   <DropdownMenuContent
     asChild
-    className="text-center flex items-center justify-center flex-col p-5 gap-3 bg-white dark:bg-gray-800 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700"
+    className="text-left w-72 p-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700"
   >
     <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
+      initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ type: "spring", stiffness: 200 }}
-      className="flex flex-col items-center"
+      className="space-y-3"
     >
-      <ShoppingBasket size={40} className="text-gray-500 dark:text-gray-400" />
-      <span className="text-gray-600 dark:text-gray-300 text-sm">Váš košík je prázdný</span>
-      <Link to="/cart">
-      <Button className="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">
-        Zobrazit produkty
-      </Button>
-      </Link>
+      {cartItems.length === 0 ? (
+        <div className="flex flex-col items-center text-center">
+          <ShoppingBasket size={40} className="text-gray-500 dark:text-gray-400 mb-2" />
+          <span className="text-gray-600 dark:text-gray-300 text-sm">Váš košík je prázdný</span>
+        </div>
+      ) : (
+        <>
+          <div className="max-h-60 overflow-y-auto space-y-3">
+          {cartItems.map((item) => (
+  <div key={item.id || item._id} className="flex items-center justify-between gap-3 border-b pb-2">
+    <div className="flex items-center gap-3">
+      <img
+        src={item.imagePath}
+        alt={item.name}
+        className="w-12 h-12 object-contain rounded border"
+      />
+      <div>
+        <p className="text-sm font-medium">{item.name}</p>
+        <p className="text-xs text-gray-500">{item.quantity}× {item.price} Kč</p>
+      </div>
+    </div>
+    <button
+      className="text-red-500 hover:text-red-600 transition"
+      onClick={() => dispatch(removeFromCart(item._id))}
+
+    >
+      <X size={20} />
+    </button>
+  </div>
+))}
+          </div>
+          <p className="text-left font-semibold mt-2">
+  Celkem: {new Intl.NumberFormat("cs-CZ", {
+    style: "currency",
+    currency: "CZK",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0))}
+</p>
+          <Link to="/cart">
+            <Button className="w-full mt-3 bg-blue-600 hover:bg-blue-700 text-white">
+              Zobrazit produkty
+            </Button>
+          </Link>
+        </>
+      )}
     </motion.div>
   </DropdownMenuContent>
 </DropdownMenu>
+
 
 <Button
   data-collapse-toggle="mobile-menu-2"

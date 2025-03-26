@@ -50,11 +50,20 @@ import PoptavkaAdmin from "./AdminPanel/PoptavkaAdmin";
 
 import AuthProvider from "../../src/context/AuthContext";
 import ViewForUrns from "./ViewForUrns/ViewForUrns";
+import { Provider } from 'react-redux';
+import  store  from '../redux/store';
+import { Toaster } from "sonner";
+import Checkout from "./Cart/checkout";
+import Payment from "./Cart/payment";
+import PaymentCancel from "./Cart/PaymentCancel";
+import PaymentSuccess from "./Cart/PaymentSuccess";
+
 export default function AppRoutes() {
   return (
     <>
-
+<Provider store={store}>
       <BrowserRouter>    
+      <Toaster richColors position="bottom-right" />
         <Routes>
 
           {/*Home*/}
@@ -77,6 +86,10 @@ export default function AppRoutes() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/cancel" element={<PaymentCancel />} />
+          <Route path="/success" element={<PaymentSuccess />} />
 
           {/*Header Panely*/}
           <Route path="/urnspanel" element={<UrnsPanel />} />
@@ -124,7 +137,7 @@ export default function AppRoutes() {
 
         </Routes>   
       </BrowserRouter>
-   
+   </Provider>
     </>
   );
 }

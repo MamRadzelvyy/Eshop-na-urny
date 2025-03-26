@@ -6,9 +6,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require("cors");
 const mongoose = require('mongoose');
-const http = require("http"); // Přidáváme HTTP server pro Socket.io
+const http = require("http");
 const socketIo = require("socket.io");
-
+const checkoutRoute = require('./routes/createCheckoutSession');
 const MY_KEY = require("./mongodb.js");
 
 mongoose
@@ -26,10 +26,10 @@ var adminLoginRouter = require("./routes/adminLogin");
 var authRouter = require("./routes/auth");
 
 var app = express();
-const server = http.createServer(app); // Vytvoření HTTP serveru pro Socket.io
+const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: ["http://localhost:3000", "http://localhost:5173"], // Povolit oba frontend servery
+    origin: ["http://localhost:3000", "http://localhost:5173"], // Oba frontend servery
     methods: ["GET", "POST", "DELETE"],
     credentials: true
   }
@@ -46,6 +46,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Socket.io připojení
 io.on("connection", (socket) => {
@@ -68,6 +69,8 @@ app.use('/poptavka', poptavkaRouter);
 app.use("/auth", authRouter);
 app.use("/admin", adminLoginRouter);
 app.use("/admin", adminRouter);
+app.use('/api', checkoutRoute);
+
 
 // Chytání 404 chyb
 app.use((req, res, next) => next(createError(404)));
@@ -81,7 +84,7 @@ app.use((err, req, res, next) => {
 });
 
 // Spuštění serveru
-const PORT = process.env.PORT || 4000;
+const PORT = 4000;
 server.listen(PORT, () => console.log(`🚀 Server běží na portu ${PORT}`));
 
 module.exports = app;
