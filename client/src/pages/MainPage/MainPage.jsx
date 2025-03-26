@@ -114,7 +114,7 @@ export default function MainPage() {
               <h2 className="text-3xl font-bold">
                 {products[currentIndex].name}
               </h2>
-              <p className="text-gray-600">Na výběr z několika variant</p>
+              <p className="text-gray-600">Naši zákazníci milují</p>
               <Link to={products[currentIndex].link}>
                 <Button className="mt-4 bg-gray-700 hover:bg-gray-800">
                   Zobrazit více

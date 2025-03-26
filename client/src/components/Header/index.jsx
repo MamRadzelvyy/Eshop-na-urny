@@ -41,10 +41,10 @@ const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
           <Link to="/" className="flex items-center">
             <img
               src={UrnaLogo}
-              className="mr-3 h-6 sm:h-9"
+              className="mr-3 h-6 sm:h-9 select-none pointer-events-none"
               alt="Eternia logo"
             />
-            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white select-none pointer-events-none">
               Eternia
             </span>
           </Link>
