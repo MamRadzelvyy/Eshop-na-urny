@@ -7,8 +7,12 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { getUrns } from "@/models/Urn";
 import { ShoppingCart } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cartSlice";
+import { toast } from "sonner";
 
 export default function DrevenaUrny() {
+  const dispatch = useDispatch();
   const [urns, setUrns] = useState([]);
   const [sortBy, setSortBy] = useState("bestsellers");
 
@@ -16,7 +20,9 @@ export default function DrevenaUrny() {
     const loadUrns = async () => {
       const data = await getUrns();
       if (data.status === 200) {
-        const filteredUrns = data.payload.filter((urn) => urn.material === "Dřevěné urny");
+        const filteredUrns = data.payload.filter(
+          (urn) => urn.material === "Dřevěné urny"
+        );
         setUrns(filteredUrns);
       }
     };
@@ -57,7 +63,11 @@ export default function DrevenaUrny() {
                 transition={{ duration: 0.5 }}
               >
                 <Card className="shadow-lg rounded-xl overflow-hidden">
-                  <img src={urn.imagePath} alt={urn.name} className="w-full max-w-40 max-h-40 mx-auto object-contain" />
+                  <img
+                    src={urn.imagePath}
+                    alt={urn.name}
+                    className="w-full max-w-40 max-h-40 mx-auto object-contain"
+                  />
                   <CardContent className="p-4 text-center">
                     <h2 className="text-xl font-semibold">{urn.name}</h2>
                     <p className="text-gray-600 mt-1">
@@ -68,22 +78,37 @@ export default function DrevenaUrny() {
                         maximumFractionDigits: 0,
                       }).format(urn.price)}
                     </p>
-<div className="flex justify-center gap-4 mt-4">
-  <Link to={`/urny/${urn._id}`}>
-    <Button className="text-sm px-3 py-3 bg-gray-700 text-white">
-      Zobrazit detaily
-    </Button>
-  </Link>
-  <Button className="px-7 py-3 bg-green-200 text-green-900 hover:bg-green-300">
-    <ShoppingCart className="w-5 h-5" />
-  </Button>
-</div>
+                    <div className="flex justify-center gap-4 mt-4">
+                      <Link to={`/urny/${urn._id}`}>
+                        <Button className="text-sm px-3 py-3 bg-gray-700 text-white">
+                          Zobrazit detaily
+                        </Button>
+                      </Link>
+                      <Button
+                        className="px-7 py-3 bg-green-200 text-green-900 hover:bg-green-300"
+                        onClick={() => {
+                          dispatch(
+                            addToCart({
+                              _id: urn._id,
+                              name: urn.name,
+                              price: urn.price,
+                              imagePath: urn.imagePath,
+                            })
+                          );
+                          toast.success(`Přidáno do košíku: ${urn.name}`);
+                        }}
+                      >
+                        <ShoppingCart className="w-5 h-5" />
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
             ))
           ) : (
-            <p className="text-center text-gray-500 col-span-full">Žádné dřevěné urny nebyly nalezeny.</p>
+            <p className="text-center text-gray-500 col-span-full">
+              Žádné dřevěné urny nebyly nalezeny.
+            </p>
           )}
         </div>
       </div>

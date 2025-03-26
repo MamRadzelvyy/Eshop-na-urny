@@ -7,6 +7,9 @@ import { getUrns } from "@/models/Urn";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ShoppingCart } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cartSlice";
+import { toast } from "sonner";
 
 const categories = [
   {
@@ -27,6 +30,7 @@ const categories = [
 ];
 
 export default function AnimalUrns() {
+  const dispatch = useDispatch();
   const [urns, setUrns] = useState([]);
   const [sortBy, setSortBy] = useState("bestsellers");
 
@@ -113,15 +117,28 @@ export default function AnimalUrns() {
                       }).format(urn.price)}
                     </p>
                     <div className="flex justify-center gap-4 mt-4">
-  <Link to={`/urny/${urn._id}`}>
-    <Button className="text-sm px-3 py-3 bg-gray-700 text-white">
-      Zobrazit detaily
-    </Button>
-  </Link>
-  <Button className="px-7 py-3 bg-green-200 text-green-900 hover:bg-green-300">
-    <ShoppingCart className="w-5 h-5" />
-  </Button>
-</div>
+                      <Link to={`/urny/${urn._id}`}>
+                        <Button className="text-sm px-3 py-3 bg-gray-700 text-white">
+                          Zobrazit detaily
+                        </Button>
+                      </Link>
+                      <Button
+                        className="px-7 py-3 bg-green-200 text-green-900 hover:bg-green-300"
+                        onClick={() => {
+                          dispatch(
+                            addToCart({
+                              _id: urn._id,
+                              name: urn.name,
+                              price: urn.price,
+                              imagePath: urn.imagePath,
+                            })
+                          );
+                          toast.success(`Přidáno do košíku: ${urn.name}`);
+                        }}
+                      >
+                        <ShoppingCart className="w-5 h-5" />
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
