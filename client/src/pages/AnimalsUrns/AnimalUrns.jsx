@@ -10,6 +10,7 @@ import { ShoppingCart } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
 import { toast } from "sonner";
+import UrnFilters from "@/components/UrnFilters/UrnFilters";
 
 const categories = [
   {
@@ -32,6 +33,8 @@ const categories = [
 export default function AnimalUrns() {
   const dispatch = useDispatch();
   const [urns, setUrns] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [priceRange, setPriceRange] = useState([0, 15000]);
   const [sortBy, setSortBy] = useState("bestsellers");
 
   useEffect(() => {
@@ -45,9 +48,18 @@ export default function AnimalUrns() {
     loadUrns();
   }, []);
 
-  const sortedUrns = [...urns].sort((a, b) => {
+  const filteredUrns = urns
+    .filter((urn) => urn.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    .filter((urn) => {
+      const [min, max] = priceRange;
+      return urn.price >= min && urn.price <= max;
+    });
+
+  const sortedUrns = [...filteredUrns].sort((a, b) => {
     if (sortBy === "price_asc") return a.price - b.price;
     if (sortBy === "price_desc") return b.price - a.price;
+    if (sortBy === "name_asc") return a.name.localeCompare(b.name);
+    if (sortBy === "name_desc") return b.name.localeCompare(a.name);
     return 0;
   });
 
@@ -77,18 +89,15 @@ export default function AnimalUrns() {
           ))}
         </div>
 
-        {/* 🧭 Třídění */}
-        <div className="flex justify-end mb-4">
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-            className="p-2 border rounded-md shadow-sm"
-          >
-            <option value="bestsellers">Nejprodávanější</option>
-            <option value="price_asc">Cena: Nejnižší</option>
-            <option value="price_desc">Cena: Nejvyšší</option>
-          </select>
-        </div>
+        {/* 🔍 Filtry */}
+        <UrnFilters
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          priceRange={priceRange}
+          onPriceRangeChange={setPriceRange}
+          sortBy={sortBy}
+          onSortByChange={setSortBy}
+        />
 
         {/* 🧱 Výpis uren */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

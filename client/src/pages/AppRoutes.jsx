@@ -57,6 +57,7 @@ import Checkout from "./Cart/checkout";
 import Payment from "./Cart/payment";
 import PaymentCancel from "./Cart/PaymentCancel";
 import PaymentSuccess from "./Cart/PaymentSuccess";
+import NotFound from "./NotFound/NotFound";
 
 export default function AppRoutes() {
   return (
@@ -68,6 +69,7 @@ export default function AppRoutes() {
 
           {/*Home*/}
           <Route path="/" element={<MainPage />} />
+          <Route path="*" element={<NotFound />} />
           
           {/* Admin Panel */}
           <Route path="/createurn" element={<AuthProvider><UrnCreateForm /></AuthProvider>} />
