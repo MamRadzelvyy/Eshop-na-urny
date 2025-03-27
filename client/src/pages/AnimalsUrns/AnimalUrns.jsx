@@ -154,7 +154,7 @@ export default function AnimalUrns() {
             ))
           ) : (
             <p className="text-center text-gray-500 col-span-full">
-              Žádné zvířecí urny nebyly nalezeny.
+              Žádné urny nesplňují vybraná kritéria.
             </p>
           )}
         </div>

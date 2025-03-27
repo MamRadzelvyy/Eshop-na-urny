@@ -118,7 +118,7 @@ export default function KovoveUrny() {
             ))
           ) : (
             <p className="text-center text-gray-500 col-span-full">
-              Žádné kovové urny nebyly nalezeny.
+              Žádné urny nesplňují vybraná kritéria.
             </p>
           )}
         </div>

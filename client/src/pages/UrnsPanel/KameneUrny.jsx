@@ -118,7 +118,7 @@ export default function KameneUrny() {
             ))
           ) : (
             <p className="text-center text-gray-500 col-span-full">
-              Žádné kamenné urny nebyly nalezeny.
+              Žádné urny nesplňují vybraná kritéria.
             </p>
           )}
         </div>

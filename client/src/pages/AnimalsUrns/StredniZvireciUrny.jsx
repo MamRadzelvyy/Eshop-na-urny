@@ -116,7 +116,7 @@ export default function StredniZvireciUrny() {
             ))
           ) : (
             <p className="text-center text-gray-500 col-span-full">
-              Žádné střední zvířecí urny nebyly nalezeny.
+              Žádné urny nesplňují vybraná kritéria.
             </p>
           )}
         </div>

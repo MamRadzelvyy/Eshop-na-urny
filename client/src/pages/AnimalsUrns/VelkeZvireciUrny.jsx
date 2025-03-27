@@ -116,7 +116,7 @@ export default function VelkeZvireciUrny() {
             ))
           ) : (
             <p className="text-center text-gray-500 col-span-full">
-              Žádné velké zvířecí urny nebyly nalezeny.
+              Žádné urny nesplňují vybraná kritéria.
             </p>
           )}
         </div>
