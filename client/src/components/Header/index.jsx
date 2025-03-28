@@ -1,16 +1,13 @@
-import { useState } from "react";
 import UrnaLogo from "../../assets/images/Urna-Logo.svg";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
-import { ShoppingCart } from "lucide-react";
-import { ShoppingBasket } from "lucide-react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, X, ShoppingBasket,ShoppingCart, Menu, LogOut } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart } from '../../redux/cartSlice';
-import { X } from 'lucide-react';
-
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserCircle, Settings, Package, Heart, ShieldCheck } from "lucide-react";
+import { jwtDecode } from "jwt-decode";
 
 
 import {
@@ -24,15 +21,42 @@ import {
 
 export default function Header() {
   const [isHidden, setIsHidden] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); //  Nový stav pro přihlášení
+  const navigate = useNavigate(); //  Pro odhlášení
 
   const toggleVisibility = () => {
     setIsHidden(!isHidden);
   };
 
 const dispatch = useDispatch();
-
 const cartItems = useSelector((state) => state.cart?.items || []);
 const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+
+ //  Kontrola tokenu v localStorage při načtení
+ useEffect(() => {
+  const token = localStorage.getItem("token");
+  setIsLoggedIn(!!token);
+}, []);
+
+//  Funkce pro odhlášení
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  setIsLoggedIn(false);
+  navigate("/");
+};
+
+
+const [isAdmin, setIsAdmin] = useState(false);
+
+useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    const decodedToken = jwtDecode(token);
+    setIsAdmin(decodedToken.isAdmin); 
+  }
+}, []);
+
 
   return (
     <>
@@ -48,18 +72,86 @@ const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
               Eternia
             </span>
           </Link>
-          <div className="flex items-center lg:order-2">
-            <Link to="/login">
-              <Button className="bg-transparent text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
-                Přihlásit se
-              </Button>
-            </Link>
-            <Link
-              to="/register"
-              className="text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
-            >
-              Registrace
-            </Link>
+
+          
+          <div className="flex items-center lg:order-2 w-[280px] justify-end">
+  {!isLoggedIn ? (
+    <>
+      <Link to="/login">
+        <Button className="bg-transparent text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
+          Přihlásit se
+        </Button>
+      </Link>
+      <Link to="/register">
+        <Button className="text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+          Registrace
+        </Button>
+      </Link>
+    </>
+  ) : (
+ // Dropdown uživatelského účtu
+<DropdownMenu>
+  <DropdownMenuTrigger className="relative p-3 transition-transform hover:scale-110 focus:outline-none">
+    <UserCircle size={22} className="text-gray-600 dark:text-gray-300 hover:text-blue-500" />
+  </DropdownMenuTrigger>
+
+  <DropdownMenuContent className="w-52 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+    <DropdownMenuLabel>Můj účet</DropdownMenuLabel>
+    <DropdownMenuSeparator />
+
+    <DropdownMenuItem asChild>
+      <Link
+        to="/profile"
+        className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
+      >
+        <Settings size={16} className="mr-2" /> Nastavení účtu
+      </Link>
+    </DropdownMenuItem>
+
+    <DropdownMenuItem asChild>
+      <Link
+        to="/orders"
+        className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
+      >
+        <Package size={16} className="mr-2" /> Moje objednávky
+      </Link>
+    </DropdownMenuItem>
+
+    <DropdownMenuItem asChild>
+      <Link
+        to="/favorites"
+        className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
+      >
+        <Heart size={16} className="mr-2" /> Oblíbené položky
+      </Link>
+    </DropdownMenuItem>
+
+    {isLoggedIn && isAdmin && (
+  <>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem asChild>
+      <Link
+        to="/adminpanel"
+        className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
+      >
+        <ShieldCheck size={16} className="mr-2" /> Admin Panel
+      </Link>
+    </DropdownMenuItem>
+  </>
+)}
+
+    <DropdownMenuSeparator />
+
+    <DropdownMenuItem
+      className="cursor-pointer text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 dark:text-red-400"
+      onClick={handleLogout}
+    >
+      <LogOut size={16} className="mr-2" /> Odhlásit se
+    </DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+
+  )}
 
             <DropdownMenu>
   <DropdownMenuTrigger className="relative p-3 transition-transform hover:scale-110 focus:outline-none">

@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 const ADMIN_SECRET = process.env.ADMIN_SECRET;
-const JWT_SECRET = process.env.JWT_SECRET || "tajnyklic"; // Použij bezpečný klíč!
+const JWT_SECRET = process.env.JWT_SECRET
 
 // Endpoint pro přihlášení (generování tokenu)
 router.post("/", (req, res) => {
@@ -52,3 +52,5 @@ router.post("/logout", (req, res) => {
 });
 
 module.exports = router;
+
+// myslím si že toto můžu smazat
