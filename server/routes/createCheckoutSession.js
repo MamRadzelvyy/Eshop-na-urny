@@ -3,6 +3,8 @@ require('dotenv').config();
 const router = express.Router();
 const Stripe = require('stripe');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const Order = require('../models/Order');
+const { authMiddleware } = require('../middleware/authMiddleware'); // <- Přidej, pokud chráníš endpoint
 
 router.post('/create-checkout-session', async (req, res) => {
   const { items } = req.body;
@@ -14,7 +16,7 @@ router.post('/create-checkout-session', async (req, res) => {
         name: item.name,
         images: [],
       },
-      unit_amount: item.price * 100, // ceny v haléřích
+      unit_amount: item.price * 100,
     },
     quantity: item.quantity,
   }));
@@ -43,7 +45,7 @@ router.get('/session-details', async (req, res) => {
 
     res.json({
       email: session.customer_details.email,
-      amount: session.amount_total / 100, // převod z haléřů
+      amount: session.amount_total / 100,
       orderId: session.id,
     });
   } catch (error) {
@@ -52,5 +54,44 @@ router.get('/session-details', async (req, res) => {
   }
 });
 
+// 💾 Uloží objednávku do databáze (zabrání duplikaci podle stripeOrderId)
+router.post('/save-order', authMiddleware, async (req, res) => {
+  const { userId, products, totalPrice, orderId } = req.body;
+
+  console.log("🔁 Backend obdržel:", { userId, products, totalPrice, orderId });
+
+  try {
+    if (!orderId) {
+      return res.status(400).json({ msg: "Chybí orderId (stripeOrderId)." });
+    }
+
+    // ✅ Kontrola, zda objednávka už existuje
+    const existingOrder = await Order.findOne({ stripeOrderId: orderId });
+    if (existingOrder) {
+      return res.status(200).json({ msg: "Objednávka už existuje", order: existingOrder });
+    }
+
+    const formattedProducts = products.map(item => ({
+      productId: item._id,
+      name: item.name,
+      quantity: item.quantity,
+      price: item.price,
+      imagePath: item.imagePath,
+    }));
+
+    const newOrder = await Order.create({
+      user: userId,
+      products: formattedProducts,
+      totalPrice,
+      stripeOrderId: orderId,
+    });
+
+    console.log("✅ Objednávka uložena do DB:", newOrder._id);
+    res.status(201).json({ msg: "Objednávka úspěšně uložena!", order: newOrder });
+  } catch (error) {
+    console.error("❌ Backend chyba při ukládání:", error.message);
+    res.status(500).json({ error: "Chyba při ukládání objednávky." });
+  }
+});
 
 module.exports = router;

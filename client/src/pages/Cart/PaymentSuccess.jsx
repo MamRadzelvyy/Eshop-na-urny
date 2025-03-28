@@ -1,38 +1,67 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, Link, useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "@/redux/cartSlice";
+import { jwtDecode } from "jwt-decode";
 
 export default function PaymentSuccess() {
-  const location = useLocation();
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const [orderData, setOrderData] = useState({ amount: null, email: null, orderId: null });
   const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.items);
 
   useEffect(() => {
-    dispatch(clearCart()); 
+    const token = localStorage.getItem("token");
+    const userId = token ? jwtDecode(token).userId : null;
 
-    if (location.state) {
-      setOrderData(location.state);
-    } else if (sessionId) {
-      const fetchSessionDetails = async () => {
-        try {
-          const response = await axios.get(`http://localhost:4000/api/session-details?session_id=${sessionId}`);
-          setOrderData(response.data);
-        } catch (error) {
-          console.error("Nepodařilo se načíst detaily objednávky:", error);
+    if (!sessionId || !userId || !token) return;
+
+    const fetchAndSaveOrder = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:4000/api/session-details?session_id=${sessionId}`
+        );
+        const { email, amount, orderId } = response.data;
+        setOrderData({ email, amount, orderId });
+
+        const alreadySaved = localStorage.getItem(`order-saved-${orderId}`);
+        if (!alreadySaved) {
+          const totalPrice = cartItems.reduce(
+            (sum, item) => sum + item.price * item.quantity,
+            0
+          );
+
+          await axios.post(
+            "http://localhost:4000/api/save-order",
+            {
+              userId,
+              products: cartItems,
+              totalPrice,
+              orderId,
+            },
+            {
+              headers: {
+                "x-auth-token": token,
+              },
+            }
+          );
+
+          localStorage.setItem(`order-saved-${orderId}`, "true");
+          dispatch(clearCart());
         }
-      };
+      } catch (error) {
+        console.error("❌ Chyba při ukládání objednávky:", error);
+      }
+    };
 
-      fetchSessionDetails();
-    }
-  }, [location.state, sessionId, dispatch]);
+    fetchAndSaveOrder();
+  }, [sessionId]);
 
   const { amount, email, orderId } = orderData;
 
@@ -55,12 +84,14 @@ export default function PaymentSuccess() {
           </p>
           <p className="mb-2">
             <span className="font-medium">Celková částka:</span>{" "}
-            {amount ? `${new Intl.NumberFormat("cs-CZ", {
-              style: "currency",
-              currency: "CZK",
-              minimumFractionDigits: 0,
-              maximumFractionDigits: 0,
-            }).format(amount)}` : "neuvedeno"}
+            {amount
+              ? `${new Intl.NumberFormat("cs-CZ", {
+                  style: "currency",
+                  currency: "CZK",
+                  minimumFractionDigits: 0,
+                  maximumFractionDigits: 0,
+                }).format(amount)}`
+              : "neuvedeno"}
           </p>
           <p>
             <span className="font-medium">ID objednávky:</span> {orderId || "neuvedeno"}
@@ -77,9 +108,7 @@ export default function PaymentSuccess() {
             <Button variant="outline">Zpět na hlavní stránku</Button>
           </Link>
           <Link to="/urnspanel">
-            <Button className="bg-blue-600 text-white hover:bg-blue-700">
-              Pokračovat v nákupu
-            </Button>
+            <Button className="bg-blue-600 text-white hover:bg-blue-700">Pokračovat v nákupu</Button>
           </Link>
         </div>
       </div>
