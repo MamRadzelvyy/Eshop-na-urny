@@ -180,18 +180,18 @@ export default function Header() {
   <DropdownMenuTrigger className="relative p-3 transition-transform hover:scale-110 focus:outline-none">
     <ShoppingCart size={22} className="text-gray-600 dark:text-gray-300 hover:text-blue-500" />
     <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full select-none pointer-events-none">
-  {itemCount}
-</span>
+      {itemCount}
+    </span>
   </DropdownMenuTrigger>
 
   <DropdownMenuContent
-    asChild
+    forceMount
     className="text-left w-72 p-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700"
   >
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
+      initial={{ opacity: 0, scale: 0.97 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ type: "spring", stiffness: 200 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
       className="space-y-3"
     >
       {cartItems.length === 0 ? (
@@ -202,37 +202,43 @@ export default function Header() {
       ) : (
         <>
           <div className="max-h-60 overflow-y-auto space-y-3">
-          {cartItems.map((item) => (
-  <div key={item.id || item._id} className="flex items-center justify-between gap-3 border-b pb-2">
-    <div className="flex items-center gap-3">
-      <img
-        src={item.imagePath}
-        alt={item.name}
-        className="w-12 h-12 object-contain rounded border"
-      />
-      <div>
-        <p className="text-sm font-medium">{item.name}</p>
-        <p className="text-xs text-gray-500">{item.quantity}× {item.price} Kč</p>
-      </div>
-    </div>
-    <button
-      className="text-red-500 hover:text-red-600 transition"
-      onClick={() => dispatch(removeFromCart(item._id))}
-
-    >
-      <X size={20} />
-    </button>
-  </div>
-))}
+            {cartItems.map((item) => (
+              <div key={item.id || item._id} className="flex items-center justify-between gap-3 border-b pb-2">
+                <div className="flex items-center gap-3">
+                  <img
+                    src={item.imagePath}
+                    alt={item.name}
+                    className="w-12 h-12 object-contain rounded border"
+                  />
+                  <div>
+                    <p className="text-sm font-medium">{item.name}</p>
+                    <p className="text-xs text-gray-500">
+                      {item.quantity}× {item.price} Kč
+                    </p>
+                  </div>
+                </div>
+                <button
+                  className="text-red-500 hover:text-red-600 transition"
+                  onClick={() => dispatch(removeFromCart(item._id))}
+                >
+                  <X size={20} />
+                </button>
+              </div>
+            ))}
           </div>
+
           <p className="text-left font-semibold mt-2">
-  Celkem: {new Intl.NumberFormat("cs-CZ", {
-    style: "currency",
-    currency: "CZK",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0))}
-</p>
+            Celkem:{" "}
+            {new Intl.NumberFormat("cs-CZ", {
+              style: "currency",
+              currency: "CZK",
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0,
+            }).format(
+              cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
+            )}
+          </p>
+
           <Link to="/cart">
             <Button className="w-full mt-3 bg-blue-600 hover:bg-blue-700 text-white">
               Zobrazit produkty
@@ -245,16 +251,17 @@ export default function Header() {
 </DropdownMenu>
 
 
-<Button
-  data-collapse-toggle="mobile-menu-2"
+
+<button
   type="button"
-  className="bg-transparent inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+  onClick={toggleVisibility}
+  className="relative p-3 transition-transform hover:scale-110 focus:outline-none text-gray-600 dark:text-gray-300 hover:text-blue-500 lg:hidden"
   aria-controls="mobile-menu-2"
   aria-expanded="false"
-  onClick={toggleVisibility}
 >
-  <Menu className="w-6 h-6" />
-</Button>
+  <Menu size={22} />
+</button>
+
 
           </div>
           <div
@@ -268,7 +275,7 @@ export default function Header() {
               <li>
                 <Link
                   to="/urnspanel"
-                  className=" group flex justify-between w-full py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                  className=" group flex justify-between w-full py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 select-none"
                   aria-current="page"
                 >
                   <p>Urny </p>
@@ -278,7 +285,7 @@ export default function Header() {
               <li>
                 <Link
                   to="/animalurns"
-                  className=" group flex justify-between w-full py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                  className=" group flex justify-between w-full py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 select-none"
                 >
                   <p>Zvířecí urny</p>
                   <ArrowRight className="hidden group-hover:block lg:group-hover:hidden lg:hidden" />
@@ -287,7 +294,7 @@ export default function Header() {
               <li>
                 <Link
                   to="/about"
-                  className=" group flex justify-between w-full py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                  className=" group flex justify-between w-full py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 select-none"
                 >
                   <p>O nás</p>
                   <ArrowRight className="hidden group-hover:block lg:group-hover:hidden lg:hidden" />
@@ -296,7 +303,7 @@ export default function Header() {
               <li>
                 <Link
                   to="/cooperation"
-                  className=" group flex justify-between w-full py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                  className=" group flex justify-between w-full py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 select-none"
                 >
                   <p>Spolupráce</p>
                   <ArrowRight className="hidden group-hover:block lg:group-hover:hidden lg:hidden" />
@@ -305,7 +312,7 @@ export default function Header() {
               <li>
                 <Link
                   to="/blog"
-                  className=" group flex justify-between w-full py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                  className=" group flex justify-between w-full py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 select-none"
                 >
                   <p>Blog</p>
                   <ArrowRight className="hidden group-hover:block lg:group-hover:hidden lg:hidden" />
@@ -314,7 +321,7 @@ export default function Header() {
               <li>
                 <Link
                   to="/contact"
-                  className=" group flex justify-between w-full py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                  className=" group flex justify-between w-full py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 select-none"
                 >
                   <p>Kontakty</p>
                   <ArrowRight className="hidden group-hover:block lg:group-hover:hidden lg:hidden" />
