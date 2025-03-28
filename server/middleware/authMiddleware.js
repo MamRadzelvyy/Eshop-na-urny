@@ -10,10 +10,9 @@ const authMiddleware = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded.userId;
+    req.user = { userId: decoded.userId };
 
-    // Najdeme uživatele v databázi
-    const user = await User.findById(req.user);
+    const user = await User.findById(decoded.userId);
     if (!user) {
       return res.status(404).json({ msg: "Uživatel nenalezen." });
     }
@@ -24,10 +23,9 @@ const authMiddleware = async (req, res, next) => {
   }
 };
 
-// Middleware pro ověření admin práv
 const adminMiddleware = async (req, res, next) => {
   try {
-    const user = await User.findById(req.user);
+    const user = await User.findById(req.user.userId);
     if (!user || !user.isAdmin) {
       return res.status(403).json({ msg: "Přístup zamítnut. Nemáte oprávnění." });
     }
@@ -37,4 +35,4 @@ const adminMiddleware = async (req, res, next) => {
   }
 };
 
-module.exports = { registerUser, loginUser, getUserProfile };
+module.exports = { authMiddleware, adminMiddleware };

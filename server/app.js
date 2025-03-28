@@ -24,7 +24,8 @@ var poptavkaRouter = require("./routes/poptavka");
 const adminRouter = require("./routes/admin");
 var adminLoginRouter = require("./routes/adminLogin");
 var authRouter = require("./routes/auth");
-
+var userRouter = require('./routes/userRoutes');
+const orderRouter = require('./routes/orderRoutes');
 var app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
@@ -70,6 +71,9 @@ app.use("/auth", authRouter);
 app.use("/admin", adminLoginRouter);
 app.use("/admin", adminRouter);
 app.use('/api', checkoutRoute);
+app.use('/api/users', userRouter);
+app.use('/api/orders', orderRouter);
+
 
 
 // Chytání 404 chyb

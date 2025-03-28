@@ -58,6 +58,11 @@ import Payment from "./Cart/payment";
 import PaymentCancel from "./Cart/PaymentCancel";
 import PaymentSuccess from "./Cart/PaymentSuccess";
 import NotFound from "./NotFound/NotFound";
+import AdminRoute from "@/components/AdminRoute/AdminRoute";
+import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
+import Profile from "./UserAccount/Profile";
+import Orders from "./UserAccount/Orders";
+import Favourites from "./UserAccount/Favourite";
 
 export default function AppRoutes() {
   return (
@@ -71,19 +76,20 @@ export default function AppRoutes() {
           <Route path="/" element={<MainPage />} />
           <Route path="*" element={<NotFound />} />
           
+          <Route element={<AdminRoute />}>
           {/* Admin Panel */}
-          <Route path="/createurn" element={<AuthProvider><UrnCreateForm /></AuthProvider>} />
-          <Route path="/updateurn/:id" element={<AuthProvider><UrnUpdateForm /></AuthProvider>} />
-          <Route path="/urn/:id" element={<AuthProvider><UrnView /></AuthProvider>} />
-          <Route path="/urns" element={<AuthProvider><UrnList /></AuthProvider>} />
-          <Route path="/createdurn/:id" element={<AuthProvider><CreatedUrn /></AuthProvider>} />
-          <Route path="/adminpanel" element={<AuthProvider><AdminPanel /></AuthProvider>} />
-          <Route path="/form" element={<AuthProvider><Form /></AuthProvider>} />
-          <Route path="/blogadmin" element={<AuthProvider><BlogAdmin /></AuthProvider>} />
-          <Route path="/update-blog/:id" element={<AuthProvider><BlogUpdateForm /></AuthProvider>} />
-          <Route path="/create-blog" element={<AuthProvider><BlogCreateForm /></AuthProvider>} />
-          <Route path="/poptavkaadmin" element={<AuthProvider><PoptavkaAdmin /></AuthProvider>} />
-
+          <Route path="/createurn" element={<UrnCreateForm />} />
+          <Route path="/updateurn/:id" element={<UrnUpdateForm />} />
+          <Route path="/urn/:id" element={<UrnView />} />
+          <Route path="/urns" element={<UrnList />} />
+          <Route path="/createdurn/:id" element={<CreatedUrn />} />
+          <Route path="/adminpanel" element={<AdminPanel />} />
+          <Route path="/form" element={<Form />} />
+          <Route path="/blogadmin" element={<BlogAdmin />} />
+          <Route path="/update-blog/:id" element={<BlogUpdateForm />} />
+          <Route path="/create-blog" element={<BlogCreateForm />} />
+          <Route path="/poptavkaadmin" element={<PoptavkaAdmin />} />
+</Route>
           {/*Autentizace*/}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -136,6 +142,12 @@ export default function AppRoutes() {
           <Route path="/male-zvireci-urny" element={<MaleZvireciUrny />} />
           <Route path="/stredni-zvireci-urny" element={<StredniZvireciUrny />} />
           <Route path="/velke-zvireci-urny" element={<VelkeZvireciUrny />} />
+
+          <Route element={<ProtectedRoute />}>
+  <Route path="/profile" element={<Profile />} />
+  <Route path="/orders" element={<Orders />} />
+  <Route path="/favourites" element={<Favourites />} />
+</Route>
 
         </Routes>   
       </BrowserRouter>

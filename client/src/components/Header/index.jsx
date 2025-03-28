@@ -21,42 +21,65 @@ import {
 
 export default function Header() {
   const [isHidden, setIsHidden] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); //  Nový stav pro přihlášení
-  const navigate = useNavigate(); //  Pro odhlášení
+
+  const [isLoggedIn, setIsLoggedIn] = useState(() => !!localStorage.getItem("token"));
+
+  const [isAdmin, setIsAdmin] = useState(() => {
+    const token = localStorage.getItem("token");
+    if (!token) return false;
+    try {
+      return jwtDecode(token).isAdmin;
+    } catch {
+      return false;
+    }
+  });
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const cartItems = useSelector((state) => state.cart?.items || []);
+  const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   const toggleVisibility = () => {
     setIsHidden(!isHidden);
   };
 
-const dispatch = useDispatch();
-const cartItems = useSelector((state) => state.cart?.items || []);
-const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setIsAdmin(false);
+    navigate("/");
+  };
 
+  useEffect(() => {
+    const handleStorageChange = (event) => {
+      if (event.key === "token") {
+        const token = event.newValue;
+        setIsLoggedIn(!!token);
+        if (token) {
+          try {
+            setIsAdmin(jwtDecode(token).isAdmin);
+          } catch {
+            setIsAdmin(false);
+          }
+        } else {
+          setIsAdmin(false);
+          navigate("/");
+        }
+        window.location.reload();
+      }
+    };
 
- //  Kontrola tokenu v localStorage při načtení
- useEffect(() => {
-  const token = localStorage.getItem("token");
-  setIsLoggedIn(!!token);
-}, []);
+    window.addEventListener("storage", handleStorageChange);
 
-//  Funkce pro odhlášení
-const handleLogout = () => {
-  localStorage.removeItem("token");
-  setIsLoggedIn(false);
-  navigate("/");
-};
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, [navigate]);
 
-
-const [isAdmin, setIsAdmin] = useState(false);
-
-useEffect(() => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    const decodedToken = jwtDecode(token);
-    setIsAdmin(decodedToken.isAdmin); 
+  if (isLoggedIn === null) {
+    return null;
   }
-}, []);
-
 
   return (
     <>
@@ -119,7 +142,7 @@ useEffect(() => {
 
     <DropdownMenuItem asChild>
       <Link
-        to="/favorites"
+        to="/favourites"
         className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
       >
         <Heart size={16} className="mr-2" /> Oblíbené položky

@@ -1,51 +1,10 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { AuthContext } from "../../../src/context/AuthContext"; // Ověř správnou cestu
 import { PackageOpen, Cylinder, ArrowDown, BookOpen, Pilcrow, Rows3 } from "lucide-react";
 import classNames from "classnames";
 
 export default function AdminPanel() {
-  const { isAuthenticated, login, logout } = useContext(AuthContext);
-  const [enteredPassword, setEnteredPassword] = useState("");
-
-  const handleLogin = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/admin", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password: enteredPassword }),
-      });
-
-      const data = await response.json();
-
-      if (data.success && data.token) {
-        login(data.token); // Uloží token do contextu
-        setEnteredPassword("");
-      } else {
-        alert("Nesprávné admin heslo!");
-      }
-    } catch (error) {
-      console.error("Chyba při komunikaci se serverem:", error);
-    }
-  };
-
-  if (!isAuthenticated) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-xl font-bold mb-4">Zadejte admin heslo</h1>
-        <input
-          type="password"
-          className="border p-2 mb-2"
-          placeholder="Admin heslo"
-          value={enteredPassword}
-          onChange={(e) => setEnteredPassword(e.target.value)}
-        />
-        <Button onClick={handleLogin}>Přihlásit se</Button>
-      </div>
-    );
-  }
-
   return (
     <div className="container mx-auto flex flex-col items-center justify-center gap-2 grid_background min-h-screen">
       <div className={classNames("container flex flex-col gap-2 justify-center items-center mx-auto")}>
@@ -85,15 +44,6 @@ export default function AdminPanel() {
             Main page
           </Button>
         </Link>
-        <Button
-        onClick={() => {
-          setEnteredPassword("");
-          logout();
-        }}
-        className="bg-red-500 hover:bg-red-400 mt-4"
-      >
-        Odhlásit se
-      </Button>
       </div>
     </div>
   );
