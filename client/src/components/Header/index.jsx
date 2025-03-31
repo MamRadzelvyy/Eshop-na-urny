@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserCircle, Settings, Package, Heart, ShieldCheck } from "lucide-react";
 import { jwtDecode } from "jwt-decode";
+import { toast } from "sonner";
+
 
 
 import {
@@ -80,6 +82,38 @@ export default function Header() {
   if (isLoggedIn === null) {
     return null;
   }
+
+  useEffect(() => {
+    const checkTokenValidity = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+  
+      try {
+        const res = await fetch("http://localhost:3000/auth/verify", {
+          method: "GET",
+          headers: {
+            "x-auth-token": token,
+          },
+        });
+  
+        if (!res.ok) {
+          localStorage.removeItem("token");
+          setIsLoggedIn(false);
+          setIsAdmin(false);
+          toast.error("Byl jste odhlášen.");
+          navigate("/");
+        }        
+      } catch (err) {
+        console.error("Ověření tokenu selhalo:", err);
+      }
+    };
+  
+    checkTokenValidity();
+  
+    const interval = setInterval(checkTokenValidity, 1 * 60 * 1000); // čas který se to po intervalu ověřeje
+    return () => clearInterval(interval);
+  }, []);
+  
 
   return (
     <>

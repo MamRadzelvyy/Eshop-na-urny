@@ -5,10 +5,12 @@ import Footer from "@/components/Footer";
 import { getUrn } from "@/models/Urn";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Heart, HeartOff } from "lucide-react";
+import { ShoppingCart, Heart } from "lucide-react";
 import { toast } from "sonner";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/cartSlice";
+
 
 export default function ViewForUrns() {
   const [urn, setUrn] = useState(null);
@@ -16,6 +18,7 @@ export default function ViewForUrns() {
   const [isFavourite, setIsFavourite] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const materialRoutes = {
     "Betonové urny": "/betonove-urny",
@@ -79,6 +82,11 @@ export default function ViewForUrns() {
       toast.error("Nepodařilo se změnit stav oblíbených.");
       console.error(error);
     }
+  };
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(urn));
+    toast.success("Urna byla přidána do košíku ");
   };
 
   return (
@@ -158,8 +166,11 @@ export default function ViewForUrns() {
                   >
                     Zpět na katalog
                   </Button>
-                  <Button className="px-4 py-3 bg-green-200 text-green-900 hover:bg-green-300">
-                    <ShoppingCart className="w-5 h-5" />
+                  <Button
+                    onClick={handleAddToCart}
+                    className="px-4 py-3 bg-green-200 text-green-900 hover:bg-green-300"
+                  >
+                    <ShoppingCart className="w-5 h-5 mr-2" /> Přidat do košíku
                   </Button>
                 </div>
               </div>

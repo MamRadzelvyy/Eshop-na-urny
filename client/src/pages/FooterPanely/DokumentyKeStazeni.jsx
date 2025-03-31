@@ -6,7 +6,7 @@ import { Download } from "lucide-react";
 
 export default function DokumentyKeStazeni() {
   const documents = [
-    { name: "Obchodní podmínky", link: "../../src/assets/documents/cena-dopravy.pdf" },
+    { name: "Obchodní podmínky", link: "../../src/assets/documents/obchodni-podminky.pdf" },
     { name: "Reklamační řád", link: "../../src/assets/documents/reklamaci-rad.pdf" },
     { name: "Ochrana osobních údajů", link: "../../src/assets/documents/ochrana-osobnich-udaju.pdf" },
     { name: "Formulář pro odstoupení od smlouvy", link: "../../src/assets/documents/pouceni-o-pravu-na-odstoupeni-od-smlouvy.pdf" },

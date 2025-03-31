@@ -44,7 +44,6 @@ export default function Register() {
       const data = await response.json();
 
       if (response.ok) {
-        alert(data.msg); // Registrace úspěšná
         navigate("/login"); // Přesměrování na přihlášení
       } else {
         setError(data.msg || "Chyba při registraci.");

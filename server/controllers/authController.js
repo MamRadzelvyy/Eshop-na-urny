@@ -49,7 +49,7 @@ exports.loginUser = async (req, res) => {
     }
 
     // Vytvoření JWT tokenu
-    const token = jwt.sign({ userId: user._id, isAdmin: user.isAdmin, }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign({ userId: user._id, isAdmin: user.isAdmin, }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
     res.json({ token, msg: "Přihlášení úspěšné!" });
   } catch (err) {

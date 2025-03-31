@@ -16,7 +16,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-
+  
     try {
       const response = await fetch("http://localhost:3000/auth/login", {
         method: "POST",
@@ -25,12 +25,11 @@ export default function Login() {
         },
         body: JSON.stringify(formData),
       });
-
+  
       const data = await response.json();
-
+  
       if (response.ok) {
         localStorage.setItem("token", data.token); // Uložit token
-        alert(data.msg); // Přihlášení úspěšné
         navigate("/"); // Přesměrování na hlavní stránku
       } else {
         setError(data.msg || "Chyba při přihlášení.");
@@ -39,6 +38,7 @@ export default function Login() {
       setError("Chyba připojení k serveru.");
     }
   };
+  
 
   return (
     <>

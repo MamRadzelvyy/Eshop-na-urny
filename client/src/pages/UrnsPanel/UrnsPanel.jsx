@@ -12,6 +12,7 @@ import { addToCart } from '../../redux/cartSlice';
 import { toast } from 'sonner';
 import UrnFilters from "@/components/UrnFilters/UrnFilters";
 
+
 const categories = [
   {
     name: "Ekologické urny",

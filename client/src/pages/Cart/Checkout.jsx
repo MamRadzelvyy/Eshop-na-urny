@@ -12,6 +12,7 @@ export default function Checkout() {
   const cartItems = useSelector((state) => state.cart.items);
   const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const navigate = useNavigate();
+  const [agreed, setAgreed] = useState(false);
 
   const [form, setForm] = useState({
     name: '',
@@ -63,6 +64,10 @@ export default function Checkout() {
       setErrors(newErrors);
       toast.error('Zkontrolujte prosím formulář.');
       scrollToFirstError(Object.keys(newErrors));
+      return;
+    }
+    if (!agreed) {
+      toast.error('Musíte souhlasit s obchodními podmínkami.');
       return;
     }
 
@@ -233,6 +238,21 @@ export default function Checkout() {
             }).format(totalPrice)}
           </span>
         </div>
+        <div className="flex items-center gap-2 mb-4">
+  <input
+    type="checkbox"
+    id="terms"
+    checked={agreed}
+    onChange={(e) => setAgreed(e.target.checked)}
+    className="w-4 h-4"
+  />
+  <label htmlFor="terms" className="text-sm text-gray-700">
+    Souhlasím s{" "}
+    <a href="/obchodni-podminky" target="_blank" className="text-blue-600 underline">
+      obchodními podmínkami
+    </a>
+  </label>
+</div>
 
         <Button
           type="submit"
