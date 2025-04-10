@@ -54,14 +54,14 @@
 - **Express** je minimalistický a flexibilní webový framework pro Node.js, který usnadňuje tvorbu serverových aplikací a API. Díky své jednoduchosti a rozsáhlé sadě funkcí umožňuje Express rychlé a efektivní nastavení serveru, správu směrování (routing), middleware a zpracování požadavků. Je velmi populární při vývoji RESTful API a moderních webových aplikací. Express je jádrem mnoha full-stack JavaScript řešení, zejména v kombinaci s MongoDB a Node.js (tzv. MERN stack).
 
 ### Použité nástroje
-- Framer-Motion
-- Moment.js
-- Socket.io
-- Stripe
-- Toaster
-- Axios
-- Redux
-- Sonner
+- [Framer-Motion](https://motion.dev/)
+- [Moment.js](https://momentjs.com/)
+- [Socket.io](https://socket.io/)
+- [Stripe](https://stripe.com/en-es)
+- [Toaster](https://www.npmjs.com/package/toaster-js)
+- [Axios](https://axios-http.com/)
+- [Redux](https://redux.js.org/)
+- [Sonner](https://sonner.emilkowal.ski/)
 
 <div align=center>
   
