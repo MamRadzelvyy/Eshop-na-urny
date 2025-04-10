@@ -33,7 +33,12 @@ export default function Orders() {
           }
         );
 
-        setOrders(Array.isArray(res.data) ? res.data : []);
+        setOrders(
+          Array.isArray(res.data)
+            ? res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Nejnovější nahoře
+            : []
+        );
+        
       } catch (error) {
         console.error("Chyba při načítání objednávek", error);
         setOrders([]);
