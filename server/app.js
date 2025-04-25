@@ -9,10 +9,9 @@ const mongoose = require('mongoose');
 const http = require("http");
 const socketIo = require("socket.io");
 const checkoutRoute = require('./routes/createCheckoutSession');
-const MY_KEY = require("./mongodb.js");
 
 mongoose
-  .connect(MY_KEY)
+  .connect(process.env.MY_KEY)
   .then(() => console.log("✅ Databáze připojena"))
   .catch((err) => console.log(err));
 
